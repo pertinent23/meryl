@@ -1,0 +1,85 @@
+:root{
+    --black: #000000;
+    --blue-1: #3DADFF;
+    --blue-2: #99FFFF;
+    --blue-3: #061F58;
+    --green-1: #3AFF73;
+}
+
+::-webkit-scrollbar{
+    width: 6px;
+    height: 6px;
+    background-color: transparent;
+}
+  
+::-webkit-scrollbar-thumb{
+    background-color: var( --black );
+}
+
+@font-face{
+    src: url( "./../police/Aaargh.ttf" );
+    font-family: aaargh;
+}
+
+#__next{
+    display: block;
+    width: 100%;
+}
+
+*{
+    font-family: aaargh;
+    color: var( --text );
+    position: relative;
+}
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 100%;
+}
+
+#menu{
+    background-color: #FFFFFF;
+    min-height: 60px;
+}
+
+#menu .content-menu-data{
+    flex: 1;
+}
+
+#menu .content-icon{
+    height: 60px;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+#menu .content-icon img{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    transform: scale( 1.5 );
+}
+
+#menu .content-name span{
+    font-weight: bold;
+    font-size: 1.2em;
+    color: var( --blue-3 );
+}
+
+#menu-action{
+    max-height: 45px;
+    border: 2px solid var( --blue-3 );
+    color: var( --blue-3 );
+    padding: 6px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: transparent;
+    font-size: 0.8em;
+}

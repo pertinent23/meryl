@@ -1,0 +1,88 @@
+.home-container{
+    min-height: 400px;
+    background-color: var( --blue-1 );
+    background-image: linear-gradient( 120deg, var( --blue-1 ), var( --blue-2 ) );
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.pres{
+    flex: 1;
+}
+
+.pres-item .content-img img{
+    width: auto;
+    width: 96%;
+    max-width: 500px;
+}
+
+.pres-item .content-text{
+    max-width: 95%;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+#start{
+    background-color: var( --black );
+    color: #FFFFFF;
+    padding: 8px 28px;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.8em;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+}
+
+#start:hover{
+    text-decoration-line: none !important;
+    text-decoration: none !important;
+}
+
+.info-container{
+    min-height: 400px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.info-option{
+    width: 100%;
+    max-width: 600px;
+}
+
+.info-option-img{
+    width: 94%;
+    max-width: 300px;
+}
+
+.info-option-text{
+    font-weight: 600;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.footer{
+    background-color: var( --black );
+}
+
+.footer span{
+    color: rgba( 255, 255, 255, 0.8 );
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+@media screen and ( min-width: 576px ) {
+    .pres-item .content-text{
+        font-size: 1.3em;
+    }
+}
+
+@media screen and ( min-width: 992px ) {
+    .pres-item .content-text{
+        font-size: 1.6em;
+    }
+
+    #start{
+        padding: 12px 45px;
+    }
+}
