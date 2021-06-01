@@ -20,56 +20,56 @@ export default function Training () {
                 <div className="container-fluid py-3">
                     <div className="row training-row">
                         <div className="col training-col d-flex flex-column align-items-center py-3">
-                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 w-100">
+                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0 w-100">
                                 <div className="card-head">
                                     Nom de la simulation
                                 </div>
-                                <div className="card-body">
+                                <div className="card-body px-0">
                                     <div className="description">
                                         Une petite description de la simulation
                                     </div>
-                                    <div className="container-fluid d-flex justify-content-end pt-4">
+                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
                                         <a href="#" className="btn px-3 py-2"> Commencer </a>
                                     </div>
                                 </div>
                             </div>
-                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 w-100">
+                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0 w-100">
                                 <div className="card-head">
                                     Nom de la simulation
                                 </div>
-                                <div className="card-body">
+                                <div className="card-body px-0">
                                     <div className="description">
                                         Une petite description de la simulation
                                     </div>
-                                    <div className="container-fluid d-flex justify-content-end pt-4">
+                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
                                         <a href="#" className="btn px-3 py-2"> Commencer </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-12 col-md-6 training-col d-flex flex-column align-items-center py-3">
-                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 w-100">
+                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0 w-100">
                                 <div className="card-head">
                                     Nom de la simulation
                                 </div>
-                                <div className="card-body">
+                                <div className="card-body px-0">
                                     <div className="description">
                                         Une petite description de la simulation
                                     </div>
-                                    <div className="container-fluid d-flex justify-content-end pt-4">
+                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
                                         <a href="#" className="btn px-3 py-2"> Commencer </a>
                                     </div>
                                 </div>
                             </div>
-                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 w-100">
+                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0 w-100">
                                 <div className="card-head">
                                     Nom de la simulation
                                 </div>
-                                <div className="card-body">
+                                <div className="card-body px-0">
                                     <div className="description">
                                         Une petite description de la simulation
                                     </div>
-                                    <div className="container-fluid d-flex justify-content-end pt-4">
+                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
                                         <a href="#" className="btn px-3 py-2"> Commencer </a>
                                     </div>
                                 </div>

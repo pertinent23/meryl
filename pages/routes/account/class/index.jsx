@@ -39,29 +39,29 @@ export default function Class () {
                                         <div className="collapse show" id="collapse-1" data-parent="#accordion" data-labbeledby="head-1">
                                             <div className="card-body py-0 px-0">
                                                 <div className="card-content d-flex flex-column px-1 px-md-2">
-                                                    <div className="card simulation-card px-3 py-2 shadow border-0 my-2">
+                                                    <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0">
                                                         <div className="card-head">
                                                             Nom de la classe
                                                         </div>
-                                                        <div className="card-body">
+                                                        <div className="card-body px-0">
                                                             <div className="description">
                                                                 Une petite description de la classe
                                                             </div>
-                                                            <div className="container-fluid d-flex justify-content-end pt-4">
-                                                                <a href="#" className="btn px-3 py-1"> Ouvrir </a>
+                                                            <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
+                                                                <a href="#" className="btn px-3 py-2"> Ouvrir </a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="card simulation-card px-3 py-2 shadow border-0 my-2">
+                                                    <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0">
                                                         <div className="card-head">
                                                             Nom de la classe
                                                         </div>
-                                                        <div className="card-body">
+                                                        <div className="card-body px-0">
                                                             <div className="description">
                                                                 Une petite description de la classe
                                                             </div>
-                                                            <div className="container-fluid d-flex justify-content-end pt-4">
-                                                                <a href="#" className="btn px-3 py-1"> Ouvrir </a>
+                                                            <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
+                                                                <a href="#" className="btn px-3 py-2"> Ouvrir </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -86,15 +86,15 @@ export default function Class () {
                                         <div className="collapse" id="collapse-2" data-parent="#accordion" data-labbeledby="head-2">
                                             <div className="card-body py-0 px-0">
                                                 <div className="card-content d-flex flex-column px-1 px-md-2">
-                                                    <div className="card simulation-card px-3 py-2 shadow border-0 my-2">
+                                                    <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0">
                                                         <div className="card-head">
                                                             Nom de la classe
                                                         </div>
-                                                        <div className="card-body">
+                                                        <div className="card-body px-0">
                                                             <div className="description">
                                                                 Une petite description de la classe
                                                             </div>
-                                                            <div className="container-fluid d-flex justify-content-end pt-4">
+                                                            <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
                                                                 <a href="#" className="btn my-2 btn-outline px-3 py-1 mr-3"> Statisque </a>
                                                                 <a href="#" className="btn my-2 btn-outline px-3 py-1 mr-3"> Participants </a>
                                                                 <a href="#" className="btn my-2 px-3 py-1"> Ouvrir </a>
