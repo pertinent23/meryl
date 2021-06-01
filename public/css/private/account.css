@@ -1,0 +1,137 @@
+:root{
+    --light-1: #F5F8FA;
+}
+
+.account-container{
+    background-color: var( --light-1 );
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#menu-action{
+    display: none !important;
+}
+
+.content-navbar{
+    background-color: var( --blue-1 );
+    background-image: url( "/img/private/server2.jpg" );
+    background-size: 100% 100%;
+}
+
+.content-navbar::before{
+    content: " ";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    background-image: linear-gradient( 120deg, rgba( 61, 77, 255, 0.6 ), rgba( 153, 175, 255, 0.9 ) );
+    -webkit-backdrop-filter: blur( 4px );
+    backdrop-filter: blur( 4px );
+}
+
+.content-navbar .jumbotron{
+    background-color: transparent;
+}
+
+.jumb-title{
+    font-size: 1.5em;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.jumbotron hr{
+    background-color: #FFFFFF;
+    opacity: 0.85;
+}
+
+.jumb-text{
+    font-size: 1.1em;
+    color: #FFFFFF;
+    max-width: 700px;
+}
+
+.jumbotron .button{
+    border-radius: 3px !important;
+    font-size: 0.8em;
+    background-color: #FFFFFF;
+    font-weight: 600;
+}
+
+#navbar{
+    min-height: 70px;
+}
+
+#navbar .nav-brand{
+    text-decoration: none;
+    font-weight: bold;
+    color: var( --black );
+}
+
+#menu-button{
+    height: 40px;
+    width: 45px;
+    border: 3px solid var( --black );
+    display: none;
+    cursor: pointer;
+}
+
+#menu-button .items{
+    width: 30px;
+    height: 3px;
+    background-color: var( --black );
+}
+
+.nav-item{
+    min-height: 35px;
+    overflow: hidden;
+}
+
+.nav-ind{
+    height: 65px;
+    width: 3px;
+    position: relative;
+    border-radius: 5px;
+}
+
+[data-active] .nav-ind{
+    background-color: #000000 !important;
+}
+
+.nav-link:hover,
+.nav-link{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+}
+
+[data-active] .nav-link:hover,
+[data-active] .nav-link{
+    font-weight: bold;
+    color: #000000;
+}
+
+@media screen and ( min-width: 768px ) {
+    .nav-ind{
+        height: 4px;
+        width: 100%;
+    }
+
+    .nav-link:hover,
+    .nav-link{
+        height: auto;
+    }
+}
+
+@media screen and ( max-width: 400px ) {
+    .jumb-text{
+        font-size: 0.9em;
+    }
+
+    .jumb-title{
+        font-size: 1.2em;
+    }
+}

@@ -1,0 +1,40 @@
+.message{
+    font-size: 1.45em;
+    font-weight: 600;
+    color: var( --blue-1 );
+}
+
+.content-items .items{
+    max-width: 350px;
+    min-width: 250px;
+    border-top: 3px solid var( --blue-1 ) !important;
+}
+
+.items img{
+    width: 90% !important;
+    max-width: 400px;
+    max-height: 150px;
+}
+
+.items span{
+    font-size: 0.9em;
+    font-weight: bold;
+    color: var( --blue-1 );
+}
+
+.items p{
+    font-size: 0.85em;
+}
+
+.items a{
+    border-color: var( --blue-1 );
+    color: var( --blue-1 );
+    font-size: 0.85em;
+    font-weight: bold;
+    border-width: 2px !important;
+}
+
+.items a:hover{
+    background-color: var( --blue-1 );
+    color: #FFFFFF;
+}

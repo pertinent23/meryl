@@ -1,0 +1,102 @@
+.box-container{
+    min-height: 450px;
+}
+
+.box{
+    width: 100%;
+    min-height: 550px;
+    background-color: red;
+}
+
+.box-col{
+    min-height: 100%;
+}
+
+.col-icon{
+    background-color: var( --blue-3 );
+}
+
+.col-form{
+    background-color: #FFFFFF;
+    min-height: 500px !important;
+}
+
+.col-form::after{
+    content: " ";
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    width: 200px;
+    height: 120px;
+    background-image: url( "/img/private/footer.svg" );
+}
+
+.box-icon{
+    max-width: 100%;
+}
+
+.box-img-text a:hover,
+.box-img-text a{
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #FFFFFF;
+}
+
+.box-title-upper{
+    font-size: 1.6em;
+    color: var( --blue-1 );
+    font-weight: bold;
+}
+
+.box-title-lower{
+    font-size: 1.2em;
+    color: var( --blue-3 );
+    font-weight: 600;
+}
+
+.content-input{
+    flex: 1;
+}
+
+.box-button{
+    height: 45px;
+    border: 1px solid;
+    outline: none;
+    width: 300px !important;
+    font-size: 0.8em;
+    border-color: var( --blue-1 );
+}
+
+.button{
+    height: 40px !important;
+    width: auto !important;
+}
+
+#submit{
+    outline: none;
+    background-color: var( --blue-1 );
+}
+
+#second{
+    outline: none;
+    border-color: var( --blue-1 );
+    color: var( --blue-1 );
+}
+
+@media screen and ( min-width: 992px ) {
+    .box{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+    }   
+}
+
+@media screen and ( max-width: 400px ) {
+    .col-form::after{
+        content: " ";
+        display: none;
+    }
+}

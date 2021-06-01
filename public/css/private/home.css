@@ -1,9 +1,24 @@
 .home-container{
     min-height: 400px;
     background-color: var( --blue-1 );
-    background-image: linear-gradient( 120deg, var( --blue-1 ), var( --blue-2 ) );
+    background-image: url( "/img/private/server2.jpg" );
     max-width: 100%;
     overflow-x: hidden;
+    background-size: 100% 100%;
+}
+
+.home-container::before{
+    content: " ";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    background-color: rgba( 0, 0, 0, 0.7 );
+    background-image: linear-gradient( 120deg, rgba( 61, 77, 255, 0.5 ), rgba( 153, 175, 255, 0.8 ) );
+    -webkit-backdrop-filter: blur( 3px );
+    backdrop-filter: blur( 3px );
 }
 
 .pres{
@@ -20,11 +35,12 @@
     max-width: 95%;
     font-weight: 400;
     font-size: 1.2em;
+    color: #FFFFFF;
 }
 
 #start{
-    background-color: var( --black );
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    color: var( --black );
     padding: 8px 28px;
     border: none;
     border-radius: 3px;
@@ -59,6 +75,7 @@
     font-weight: 600;
     font-size: 1.1em;
     text-align: center;
+    color: var( --blue-3 );
 }
 
 .footer{
@@ -67,8 +84,34 @@
 
 .footer span{
     color: rgba( 255, 255, 255, 0.8 );
-    font-size: 0.85em;
+    font-size: 0.9em;
+    opacity: 0.9;
     font-weight: bold;
+}
+
+.band{
+    background-image: linear-gradient( 120deg, var( --blue-4 ), var( --blue-1 ) );
+}
+
+.band-items{
+    min-width: 300px;
+}
+
+.band img{
+    width: 45px;
+}
+
+.band .band-text{
+    font-size: 1.3em;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.band .band-sub-text{
+    font-size: 0.85em;
+    color: #FFFFFF;
+    text-align: center;
+    max-width: 380px;
 }
 
 @media screen and ( min-width: 576px ) {

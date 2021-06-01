@@ -1,0 +1,196 @@
+#accordion{
+    border-radius: 3px !important;
+    border: 0px !important;
+}
+
+#accordion > .card{
+    background-color: #FFFFFF;
+    font-weight: 600;
+    font-size: 0.9em;
+    border: 0px !important;
+}
+
+#accordion .card .head-content{
+    padding: 30px 15px;
+    background-color: #FFFFFF;
+    border-top: 3px solid var( --blue-1 );
+    color: var( --blue-1 );
+}
+
+#accordion .card-content{
+    padding: 45px 20px;
+    background-color: #FFFFFF;
+    border-top: 2px solid var( --light-1 );
+    font-size: 0.88em;
+    color: #AAAAAA;
+}
+
+.simulation-card{
+    border-top: 3px solid var( --blue-2 ) !important;
+}
+
+.simulation-card:hover{
+    border-top-color: var( --blue-1 ) !important;
+}
+
+.simulation-card .card-head{
+    color: var( --blue-2 );
+    font-size: 1.2em;
+    padding: 15px 0px;
+    font-weight: bold;
+}
+
+.simulation-card:hover .card-head{
+    color: var( --blue-1 );
+}
+
+.simulation-card .description{
+    padding: 20px 15px;
+    font-size: 0.95em;
+    color: #555555;
+}
+
+.simulation-card a:hover,
+.simulation-card a{
+    font-size: 0.95em;
+    background-color: var( --blue-2 );
+    color: #FFFFFF;
+    border-width: 2px;
+    font-weight: bold;
+    border-radius: 3px !important;
+}
+
+.simulation-card a:hover{
+    background-color: var( --blue-1 );
+}
+
+.simulation-card .btn-outline{
+    font-size: 0.95em;
+    border-color: var( --blue-2 );
+    color: var( --blue-2 );
+    border-width: 2px;
+    font-weight: bold;
+    border-radius: 3px !important;
+    background-color: transparent !important;
+}
+
+.simulation-card .btn-outline:hover{
+    border-color: var( --blue-1 );
+    color: var( --blue-1 );
+    background-color: transparent !important;
+}
+
+.simulation-card .card-body div{
+    flex-wrap: wrap-reverse;
+}
+
+.creation-box{
+    background-color: var( --blue-1 );
+    border-radius: 3px;
+    background-image: url( "/img/private/server1.jpg" );
+    background-size: 100% 100%;
+    overflow: hidden;
+    border-top: 3px solid var( --blue-1 );
+}
+
+.creation-box::before{
+    content: " ";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    background-color: rgba( 255, 255, 255, 0.7 );
+    -webkit-backdrop-filter: blur( 3px );
+    backdrop-filter: blur( 3px );
+}
+
+.creation-box .title{
+    color: var( --blue-1 );
+    font-size: 1.2em;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.creation-box input,
+.creation-box textarea{
+    outline: none;
+    padding: 10px 15px;
+    padding-right: 3px;
+    font-size: 0.86em;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background-color: rgba( 255, 255, 255, 0.8 );
+    max-width: 90%;
+}
+
+.creation-box input::placeholder,
+.creation-box textarea::placeholder{
+    color: #000000;
+    opacity: 0.6;
+}
+
+.creation-box .btn,
+.creation-box .btn:hover{
+    background-color: var( --blue-1 );
+    color: #FFFFFF;
+    font-size: 0.75em;
+    font-weight: bold;
+    border-radius: 3px !important;
+    letter-spacing: 0.15em;
+}
+
+.box-add{
+    background-image: linear-gradient( 120deg, var( --purple-2 ),  var( --purple-1 ) );
+    border-bottom: 5px solid #FFFFFF;
+    border-top: 30px solid #FFFFFF;
+    overflow: hidden;
+}
+
+.box-add::before{
+    content: " ";
+    display: block;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    left: -40px;
+    bottom: -50px;
+    background-color: rgba( 255, 255, 255, 1 );
+    border-radius: 100%;
+}
+
+.box-add .title{
+    font-size: 0.95em;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.box-add .form input{
+    padding: 10px 25px;
+    font-size: 0.85em;
+    border: 0px;
+    background-color: rgba( 255, 255, 255, 0.95 );
+    border-radius: 3px;
+    outline: none;
+    -webkit-backdrop-filter: blur( 70px );
+    backdrop-filter: blur( 70px );
+}
+
+.box-add .btn:hover,
+.box-add .btn{
+    font-size: 0.83em;
+    background-color: #FFFFFF;
+    color: var( --purple-2 );
+    font-weight: bold;
+}
+
+.training-row{
+    font-size: 0.9em;
+}
+
+.training-col{
+    border-top: 2px solid var( --light-1 );
+    font-size: 0.88em;
+    color: #AAAAAA;
+}
