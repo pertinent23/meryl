@@ -20,6 +20,7 @@ export default function Class () {
                 <div className="container-fluid py-3 px-0 px-sm-2">
                     <div className="row">
                         <div className="col">
+                            <div className="message d-block text-center py-3 pt-5"> Toutes mes classes </div>
                             <div className="container-fluid px-1 px-md-2">
                                 <div className="accordion my-4" id="accordion">
                                     <div className="card">

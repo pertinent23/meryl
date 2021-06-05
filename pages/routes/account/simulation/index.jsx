@@ -20,6 +20,7 @@ export default function Simulation () {
                 <div className="container-fluid py-3 px-0 px-sm-2">
                     <div className="row">
                         <div className="col">
+                            <div className="message d-block text-center py-3"> Toutes mes simulations </div>
                             <div className="container-fluid px-1 px-sm-2">
                                 <div className="accordion my-4" id="accordion">
                                     <div className="card">
@@ -113,6 +114,7 @@ export default function Simulation () {
                             </div>
                         </div>
                         <div className="col-12 col-md-5 col-lg-4">
+                            <div className="message d-block d-md-none text-center py-3"> Gestion </div>
                             <div className="container-fluid py-4 px-1 px-md-0">
                                 <div className="simulation-creation-box creation-box d-flex flex-column pt-5 pb-3">
                                     <div className="title text-center"> Créer une simulation </div>

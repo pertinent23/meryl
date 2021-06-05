@@ -1,3 +1,9 @@
+.message{
+    font-size: 1.25em;
+    font-weight: 600;
+    color: var( --blue-1 );
+}
+
 #accordion{
     border-radius: 3px !important;
     border: 0px !important;
@@ -81,16 +87,16 @@
 }
 
 .simulation-card .card-body div{
-    flex-wrap: wrap-reverse;
+    overflow: auto;
 }
 
 .creation-box{
-    background-color: var( --blue-1 );
+    background-color: var( --blue-4 );
     border-radius: 3px;
     background-image: url( "/img/private/server1.jpg" );
     background-size: 100% 100%;
     overflow: hidden;
-    border-top: 3px solid var( --blue-1 );
+    border-top: 3px solid #FFFFFF;
 }
 
 .creation-box::before{
@@ -101,16 +107,15 @@
     width: 100%;
     left: 0px;
     top: 0px;
-    background-color: rgba( 255, 255, 255, 0.7 );
-    -webkit-backdrop-filter: blur( 3px );
-    backdrop-filter: blur( 3px );
+    background-image: linear-gradient( 120deg, rgba( 85, 100, 255, 0.6 ), rgba( 153, 175, 255, 0.9 ) );
+    -webkit-backdrop-filter: blur( 7px );
+    backdrop-filter: blur( 7px );
 }
 
 .creation-box .title{
-    color: var( --blue-1 );
+    color: #FFFFFF;
     font-size: 1.2em;
-    font-weight: 600;
-    opacity: 0.8;
+    font-weight: bold;
 }
 
 .creation-box input,
@@ -121,7 +126,10 @@
     font-size: 0.86em;
     border: 1px solid transparent;
     border-radius: 2px;
-    background-color: rgba( 255, 255, 255, 0.8 );
+    background-color: rgba( 255, 255, 255, 0.6 );
+    -webkit-backdrop-filter: blur( 3px );
+    backdrop-filter: blur( 3px );
+    border-radius: 4px;
     max-width: 90%;
 }
 
@@ -133,18 +141,18 @@
 
 .creation-box .btn,
 .creation-box .btn:hover{
-    background-color: var( --blue-1 );
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    color: #000000;
     font-size: 0.75em;
-    font-weight: bold;
+    font-weight: 600;
     border-radius: 3px !important;
     letter-spacing: 0.15em;
 }
 
 .box-add{
-    background-image: linear-gradient( 120deg, var( --purple-2 ),  var( --purple-1 ) );
-    border-bottom: 5px solid #FFFFFF;
-    border-top: 30px solid #FFFFFF;
+    background-color: #FFFFFF;
+    border-bottom: 5px solid var( --blue-1 );
+    border-top: 30px solid var( --blue-1 );
     overflow: hidden;
 }
 
@@ -156,22 +164,23 @@
     width: 100px;
     left: -40px;
     bottom: -50px;
-    background-color: rgba( 255, 255, 255, 1 );
+    background-color: var( --blue-1 );
     border-radius: 100%;
 }
 
 .box-add .title{
     font-size: 0.95em;
-    color: #FFFFFF;
+    color: var( --blue-1 );
     font-weight: 600;
 }
 
 .box-add .form input{
     padding: 10px 25px;
     font-size: 0.85em;
-    border: 0px;
-    background-color: rgba( 255, 255, 255, 0.95 );
-    border-radius: 3px;
+    border: 2px solid transparent;
+    border-bottom-color: var( --blue-1 );
+    background-color: #FAFAFF;
+    border-radius: 4px;
     outline: none;
     -webkit-backdrop-filter: blur( 70px );
     backdrop-filter: blur( 70px );
@@ -180,8 +189,8 @@
 .box-add .btn:hover,
 .box-add .btn{
     font-size: 0.83em;
-    background-color: #FFFFFF;
-    color: var( --purple-2 );
+    background-color: var( --blue-1 );
+    color: #FFFFFF;
     font-weight: bold;
 }
 

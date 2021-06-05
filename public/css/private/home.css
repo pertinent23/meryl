@@ -7,6 +7,10 @@
     background-size: 100% 100%;
 }
 
+.bg-gray{
+    background-color: var( --light-1 ) !important;
+}
+
 .home-container::before{
     content: " ";
     display: block;
@@ -36,6 +40,11 @@
     font-weight: 400;
     font-size: 1.2em;
     color: #FFFFFF;
+}
+
+.pres-item .text-title{
+    font-size: 1.3em;
+    font-weight: 600;
 }
 
 #start{
@@ -78,19 +87,14 @@
     color: var( --blue-3 );
 }
 
-.footer{
-    background-color: var( --black );
-}
-
 .footer span{
-    color: rgba( 255, 255, 255, 0.8 );
+    color: #000000;
     font-size: 0.9em;
-    opacity: 0.9;
     font-weight: bold;
 }
 
 .band{
-    background-image: linear-gradient( 120deg, var( --blue-4 ), var( --blue-1 ) );
+    background-color: #FFFFFF;
 }
 
 .band-items{
@@ -103,13 +107,13 @@
 
 .band .band-text{
     font-size: 1.3em;
-    color: #FFFFFF;
+    color: var( --blue-4 );
     font-weight: 600;
 }
 
 .band .band-sub-text{
     font-size: 0.85em;
-    color: #FFFFFF;
+    color: var( --blue-4 );
     text-align: center;
     max-width: 380px;
 }
@@ -118,10 +122,18 @@
     .pres-item .content-text{
         font-size: 1.3em;
     }
+
+    .pres-item .text-title{
+        font-size: 1.4em;
+    }
 }
 
 @media screen and ( min-width: 992px ) {
     .pres-item .content-text{
+        font-size: 1.4em;
+    }
+
+    .pres-item .text-title{
         font-size: 1.6em;
     }
 

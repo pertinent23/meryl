@@ -16,10 +16,11 @@ export default function Home () {
                             <img src="/img/private/img1.svg" alt="icon" className="d-block img home-img"/>
                         </div>
                     </div>
-                    <div className="col-12 col-lg-6 pres-item d-flex justify-content-center align-items-center">
-                        <span className="content-text d-block py-4 px-3 px-lg-5"> 
+                    <div className="col-12 col-lg-6 pres-item d-flex justify-content-center align-items-center py-sm-4">
+                        <span className="content-text d-block py-4 px-3 px-sm-5">
+                            <span className="text-title d-block py-2"> Réseaux informatiques </span>
                             Créer une classe, créer une simulation et ajouter là dans la classe,
-                            pour apprendre le fonctionnement des réseaux informatiques à <br/>
+                            pour apprendre le fonctionnement des réseaux informatiques à
                             vos élèves.
                         </span>
                     </div>
@@ -32,7 +33,7 @@ export default function Home () {
                     </Link>
                 </div>
             </div>
-            <div className="container-fluid">
+            <div className="container-fluid bg-gray">
                 <div className="row band py-3">
                     <div className="col py-3">
                         <div className="band-items d-flex flex-column justify-content-center align-items-center">
@@ -63,7 +64,7 @@ export default function Home () {
                     </div>
                 </div>
             </div>
-            <div className="container-fuid d-flex flex-column info-container justify-content-center align-items-center py-4 px-0">
+            <div className="container-fuid bg-gray d-flex flex-column info-container justify-content-center align-items-center py-4 px-0">
                 <div className="row container-fluid d-flex flex-column flex-lg-row pres py-3 px-lg-3 py-lg-5">
                     <div className="col pres-item d-flex justify-content-center align-items-center">
                         <div className="info-option container d-flex flex-column">
@@ -91,9 +92,9 @@ export default function Home () {
                     </div>
                 </div>
             </div>
-            <div className="container-fuid d-flex flex-row footer justify-content-center align-items-center py-3 pl-2">
+            <div className="container-fuid bg-gray d-flex flex-row footer justify-content-center align-items-center py-5 pl-2">
                 <img src="/img/iconf.png" alt="icon" width="70" height="60"/>
-                <span className="d-block mt-3 ml-2"> copyright { ( new Date() ).getFullYear() } </span>
+                <span className="d-block mt-3 ml-2 py-5"> copyright { ( new Date() ).getFullYear() } </span>
             </div>
         </Fragment>
     );
