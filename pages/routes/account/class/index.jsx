@@ -49,7 +49,7 @@ export default function Class () {
                                                                 Une petite description de la classe
                                                             </div>
                                                             <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                                <a href="#" className="btn px-3 py-2"> Ouvrir </a>
+                                                                <a href="#" className="btn px-3 py-2 open-class" data-class="name" data-id="id"> Ouvrir </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -62,7 +62,7 @@ export default function Class () {
                                                                 Une petite description de la classe
                                                             </div>
                                                             <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                                <a href="#" className="btn px-3 py-2"> Ouvrir </a>
+                                                                <a href="#" className="btn px-3 py-2 open-class" data-class="name" data-id="id"> Ouvrir </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -96,9 +96,9 @@ export default function Class () {
                                                                 Une petite description de la classe
                                                             </div>
                                                             <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                                <a href="#" className="btn my-2 btn-outline px-3 py-1 mr-3"> Statisque </a>
-                                                                <a href="#" className="btn my-2 btn-outline px-3 py-1 mr-3"> Participants </a>
-                                                                <a href="#" className="btn my-2 px-3 py-1"> Ouvrir </a>
+                                                                <a href="#" className="btn my-2 btn-outline px-3 py-1 mr-3 stat-class" data-class="name" data-id="id"> Statisque </a>
+                                                                <a href="#" className="btn my-2 btn-outline px-3 py-1 mr-3 members-class" data-class="name" data-id="id"> Participants </a>
+                                                                <a href="#" className="btn my-2 px-3 py-1 open-class" data-class="name" data-id="id"> Ouvrir </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -141,3 +141,7 @@ export default function Class () {
         </Fragment>
     );
 };
+
+Class.scripts = [
+    '/js/class.manager.js'
+];
