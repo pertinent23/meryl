@@ -1,4 +1,9 @@
-const current = { context: 1, mode: 1, pile: [] };
+const current = { context: 1, mode: 2, pile: [] };
+/**
+    * the mode 1 to do a simulation
+    * the mode 2 to first create a simulation
+    * the mode 3 to se a simulation 
+*/
 const map = {};
 const events = {
     dragStart: 'drag.detected',
@@ -10,11 +15,13 @@ const events = {
 Simulation.events = events;
 
 const fx = {
+    nodeList: [],
     addToWorkSpace( node ) {
         /** 
             * Add node in the
             * workSpace in position fixed 
         */
+            this.nodeList.push( node );
         return $( '.mainSpace' ).append( node );
     },
     createCurrentItem( node ) {
@@ -282,7 +289,7 @@ const fx = {
     }
 };
 
-const createSimulationItem = ( src, dataInfos, alt, name ) => {
+const createSimulationItem = ( src, dataInfos, name, alt ) => {
     /** 
         * 
         * To create a creation's item
@@ -383,7 +390,7 @@ const activeDragEvent = ( node, detected, drop ) => {
     } );
 };
 
-const createItem = ( src, dataInfos, alt, name ) => {
+const createItem = ( src, dataInfos, name, alt ) => {
     return $( {
         el: 'div',
         class: 'items',
@@ -517,7 +524,6 @@ const createToolsListUsing = ( list ) => {
 const initFirstEngine = () => {
     $( 'body' ).css( 'overflow', 'hidden' );
     createInitialToolsList();
-        fx.prepareMainSpace();
     return fx.defineDropZone(
         $( '.firstSelectionSpace' )
     );
@@ -526,10 +532,12 @@ const initFirstEngine = () => {
 const initSecondEngine = () => {
     const list = {};
             $.each( map, function ( key ) {
-                list[ key ] = {};
-                    list[ key ].name = this.name;
-                    list[ key ].src = this.src;
-                    list[ key ].infos = this.infos;
+                if ( key in list )
+                    return;
+                        list[ key ] = {};
+                            list[ key ].name = this.name;
+                            list[ key ].src = this.src;
+                            list[ key ].infos = this.infos;
                 return key;
             } );
         createToolsListUsing( list );
@@ -546,51 +554,287 @@ const initSecondEngine = () => {
 };
 
 const InterfaceManager = {
+    components: { },
+    items( list = [] ) {
+        this.openMoreOption();
+        this.setMoreName( "Envoyer un paquet au: " );
+            for( const item of list )
+                this.addMoreItem( item );
+        return this;
+    },
+    error( arr ) {
+        this.openMoreError();
+        this.setMoreName( "Erreurs: " );
+        for( const text of arr ) {
+            const item = this.createMoreOption( text );
+                this.addMoreItem( item );
+        }
+    },
     init() {
         this.activeButton();
         window.Simulation.ScroolManager.init();
     },
+    initComponent() {
+        this.states = { 
+            begin: 'start',
+            first: 'first',
+            second: 'second'
+        };
+        return Digital.update( this.components, {
+            api: $( '.api-create' ),
+            closeApi: $( '#close-api' ),
+            simulationName: $( '#simulation-name' ),
+            more: $( '.api-more' ),
+            closeMore: $( '#close-more' ),
+            moreTitle: $( '#api-more-text' ),
+            moreContainer: $( '.content-more-option' ),
+            firstButton: $( '#finalButton' ),
+            begin: $( '.beginStape' ),
+            first: $( '.firstStape' ),
+            second: $( '.secondStape' ),
+            saveButton: $( '#saveButton' ),
+            dataSpace: $( '.dataSpace' )
+        } );
+    },
+    openApi() {
+        utils.show( this.components.api );
+        window.scroll( 0, 0 );
+        $( $.body() ).css( { overflow: 'hidden' } );
+        return this.components.closeApi.on( {
+            click: function () {
+                return InterfaceManager.closeApi();
+            }
+        } );
+    },
+    closeApi() {
+        $( $.body() ).css( { overflow: 'auto' } );
+        for( const node of fx.nodeList ) {
+            try{
+                node.remove();
+            } catch( e ) {}
+        }
+        fx.nodeList = [ ];
+        Simulation.clean();
+        return utils.hide( 
+            this.components.api 
+        );
+    },
+    openMoreOption() {
+        this.components.moreContainer.empty();
+        this.components.more.removeClass( 'more-error' );
+        utils.show( this.components.more );
+        return this.components.closeMore.on( {
+            click: function () {
+                return InterfaceManager.closeMore();
+            }
+        } );
+    },
+    openMoreError() {
+        this.components.moreContainer.empty();
+        this.components.more.addClass( 'more-error' );
+        utils.show( this.components.more );
+        return this.components.closeMore.on( {
+            click: function () {
+                return InterfaceManager.closeMore();
+            }
+        } );
+    },
+    closeMore() {
+        return utils.hide( 
+            this.components.more
+        );
+    },
+    emptyMore() {
+            this.components.moreContainer.empty();
+        return this;
+    },
+    addMoreItem( item ) {
+        return this.components.moreContainer.append(
+            item
+        );
+    },
+    setApiName( name = '' ) {
+        return this.components.simulationName.text(
+            name
+        );
+    },
+    setMoreName( name = '' ) {
+        return this.components.moreTitle.text(
+            name
+        );
+    },
+    createMoreOption( val ) {
+        return $( {
+            el: 'div',
+            class: 'more-option shadow d-flex py-4 pl-4 mt-3 rounded',
+            content: {
+                el: 'span',
+                content: val
+            }
+        } );
+    },
+    interface_1() {
+        const 
+            button = this.components.firstButton,
+            components = this.components,
+            state = this.states;
+            $( '.itemContent' ).empty();
+                button.attr( 'data-btn', state.begin ).text( 'Commencer' );
+                utils.hide( this.components.saveButton );
+                    utils.hide( components.dataSpace );
+                    utils.hide( components.first );
+                    utils.hide( components.second );
+                    utils.show( components.begin );
+        return this;
+    },
+    interface_2() {
+        utils.show( this.components.dataSpace );
+        const 
+            button = this.components.firstButton,
+            components = this.components,
+            state = this.states;
+                button.attr( 'data-btn', state.first ).text( 'Suivant' );
+                utils.hide( this.components.saveButton );
+                    utils.show( components.dataSpace );
+                    utils.hide( components.begin );
+                    utils.hide( components.second );
+                    utils.show( components.first );
+        return initFirstEngine();
+    },
+    interface_3() {
+        utils.show( this.components.dataSpace );
+        if ( current.mode === 1 ){
+            const
+                list = {
+                    computer: '/computer.png',
+                    router: '/router.png',
+                    server: '/server.png',
+                    switch: '/switch.png',
+                    connector: '/connector.png',
+                    cable: '/cable.png'
+                };
+            $.each( list, function ( key ) {
+                map[ key ] = {
+                    src: utils.url( this ),
+                    name: utils.name( key ),
+                    infos: key
+                }
+            } );
+        } else if ( current.mode === 3 ) {
+            utils.hide( this.components.dataSpace );
+        }
+        const 
+            button = this.components.firstButton,
+            components = this.components,
+            state = this.states;
+                if ( ( utils.isEmpty( map ) || !map.cable ) && current.mode == 2 )
+                    return console.log( 'error' );
+                        button.attr( 'data-btn', state.second ).text( 'Tester' );
+                        utils.hide( this.components.saveButton );
+                            utils.show( components.dataSpace );
+                            utils.hide( components.first );
+                            utils.hide( components.begin );
+                            utils.show( components.second );
+        initSecondEngine();
+    },
+    finalyseError( error ) {
+        const final = [];
+            for( const item of error ) {
+                if ( !final.inArray( item.error ) )
+                    final.push( item.error );
+                item.node.addClass( 'itemError' );
+            }
+        return this.error( final );
+    },
     activeButton() {
         const 
-            button = $( '#finalButton' ),
-            components = {
-                begin: $( '.beginStape' ),
-                first: $( '.firstStape' ),
-                second: $( '.secondStape' )
-            },
-            state = { 
-                begin: 'start',
-                first: 'first',
-                second: 'second'
-            };
+            button = this.components.firstButton,
+            saveButton = this.components.saveButton,
+            state = this.states,
+            obj = this;
+                saveButton.text( current.mode === 2 ? 'Envoyer' : 'Sauvegarder' ).click( function () {
+                    utils.hide( saveButton );
+                    if ( current.mode  === 2 ) {
+                        /** 
+                            * We have to send
+                            * Data to the server 
+                        */
+                    } else {
+                        const data = Simulation.saveNetWork();
+                        return $.setStorage( 'save', JSON.stringify(
+                            data
+                        ) );
+                    }
+                } );
         return button.on( {
             click() {
                 const myState = button.attr( 'data-btn' );
                     if ( myState == state.begin ) {
-                        button.attr( 'data-btn', state.first ).text( 'Suivant' );
-                            utils.hide( components.begin );
-                            utils.show( components.first );
-                        return initFirstEngine();
+                        obj.interface_2();
                     } else {
                         if ( myState == state.first ) {
-                            if ( utils.isEmpty( map ) || !map.cable )
-                                return console.log( 'error' );
-                                button.attr( 'data-btn', state.second ).text( 'Tester' );
-                                    utils.hide( components.first );
-                                    utils.show( components.second );
-                            initSecondEngine();
+                            obj.interface_3();
                         } else {
                             if ( myState == state.second ) {
                                 Simulation.verify();
+                                if ( Simulation.errors.length === 0 && current.mode != 3 )
+                                    utils.show( saveButton );
+                                else
+                                    return obj.finalyseError( Simulation.errors );
                             }
                         }
                     }
                 return myState;
             }
         } );
+    },
+    openInterFace( param_1, param_2 ) {
+        this.initComponent();
+        fx.prepareMainSpace();
+        if( param_1 && param_2 && !$.isBoolean( param_2 ) ) {
+            current.mode = 1;
+            Simulation.name = param_1;
+            Simulation.description = param_2;
+                this.setApiName( param_1 );
+                this.init();
+                this.openApi();
+            return this.interface_3();
+        } else if ( param_1 && $.isObject( param_1 ) ) {
+            if ( param_2 === true )
+                current.mode = 3;
+            if ( param_2 != true ) {
+                /**
+                    * Here we have to do
+                    * the simulation 
+                */
+                const data = param_1;
+                    for( let key in map )
+                        delete map[ key ];
+                        this.init();
+                    this.interface_1();
+                    this.setApiName( data.name );
+                return this.openApi();
+            } else {
+                /** 
+                    * 
+                    * Here we have to 
+                    * show the simulation
+                    *  
+                */
+                const data = param_1;
+                    this.setApiName( data.name );
+                    this.openApi();
+                    this.init();
+                    this.interface_3();
+                return Simulation.generateNetwork( data );
+            }
+        }
     }
 };
+Simulation.InterfaceManager = InterfaceManager;
 
-Digital( function () {
-    InterfaceManager.init();
-} );
+/*Digital( function () {
+    const 
+        save = JSON.parse( $.getStorage( 'save' ) );
+    InterfaceManager.openInterFace( save, true );
+} );*/
