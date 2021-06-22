@@ -1,3 +1,26 @@
+const inits = {
+    showButton() {
+        return $( '.showSimulationButton' ).each( function () {
+            const node = $( this );
+            return node.click( function () {
+                const 
+                    save = JSON.parse( $.getStorage( 'save' ) );
+                InterfaceManager.openInterFace( save, true );
+            } );
+        } );
+    },
+    startButton() {
+        return $( '.startSimulationButton' ).each( function () {
+            const node = $( this );
+            return node.click( function () {
+                const 
+                    save = JSON.parse( $.getStorage( 'save' ) );
+                InterfaceManager.openInterFace( save, false );
+            } );
+        } );
+    }
+};
+
 Digital( function ( $ ) {
     const 
         nameField = $( '#simulation-creation-name' ),
@@ -18,4 +41,9 @@ Digital( function ( $ ) {
             );
         }
     } );
+} );
+
+Digital( function ( $ ) {
+        inits.showButton();
+    return inits.startButton();
 } );

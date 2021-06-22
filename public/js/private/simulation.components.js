@@ -5,14 +5,33 @@ const current = { context: 1, mode: 2, pile: [] };
     * the mode 3 to se a simulation 
 */
 const map = {};
+const NameMap = {
+    computer: 'Ordinateur',
+    router: 'Routeur',
+    server: 'Seveur',
+    switch: 'Switch',
+    connector: 'Connecteur',
+    paquet: 'Paquet',
+    cable: 'Cable',
+    phone: 'telephone',
+    pad: 'tablet'
+};
+const UrlMap = {
+    computer: '/computer.svg',
+    router: '/router.svg',
+    server: '/server.svg',
+    switch: '/switch.svg',
+    connector: '/connector.svg',
+    cable: '/cable.svg',
+    pad: '/pad.svg',
+    phone: '/phone.svg'
+};
 const events = {
     dragStart: 'drag.detected',
     dropDetected: 'drop.detected',
     drop: 'drop.valided',
     drag: 'drag.move'
 };
-
-Simulation.events = events;
 
 const fx = {
     nodeList: [],
@@ -413,20 +432,20 @@ const utils = {
     dropZoneVerifier() {
         return;
     },
+    getDropZoneSize() {
+        const rect = this.dropZone.getBoundingClientRect();
+        return {
+            x: rect.left,
+            y: rect.top,
+            with: rect.width,
+            height: rect.height
+        };
+    },
     url( src ) {
         return '/img/simulation'.concat( src );
     },
     name( key ) {
-        const map = {
-            computer: 'Ordinateur',
-            router: 'Routeur',
-            server: 'Seveur',
-            switch: 'Switch',
-            connector: 'Connecteur',
-            paquet: 'Paquet',
-            cable: 'Cable'
-        };
-        return map[ key ];
+        return NameMap[ key ];
     },
     end() {
         const target = this.targeted;
@@ -463,21 +482,12 @@ const utils = {
     }
 };
 
-Simulation.utils = utils;
-
 const createInitialToolsList = () => {
     $( function () {
         utils.list = [ ];
         const 
             container = $( '.itemContent' ).empty(),
-            list = {
-                computer: '/computer.png',
-                router: '/router.png',
-                server: '/server.png',
-                switch: '/switch.png',
-                connector: '/connector.png',
-                cable: '/cable.png'
-            };
+            list = UrlMap;
             $.each( list, function ( key ) {
                 const
                     src = this,
@@ -598,7 +608,7 @@ const InterfaceManager = {
     },
     openApi() {
         utils.show( this.components.api );
-        window.scroll( 0, 0 );
+        window.scrollTo( 0, 0 );
         $( $.body() ).css( { overflow: 'hidden' } );
         return this.components.closeApi.on( {
             click: function () {
@@ -680,7 +690,7 @@ const InterfaceManager = {
             state = this.states;
             $( '.itemContent' ).empty();
                 button.attr( 'data-btn', state.begin ).text( 'Commencer' );
-                utils.hide( this.components.saveButton );
+                utils.show( this.components.saveButton );
                     utils.hide( components.dataSpace );
                     utils.hide( components.first );
                     utils.hide( components.second );
@@ -705,14 +715,7 @@ const InterfaceManager = {
         utils.show( this.components.dataSpace );
         if ( current.mode === 1 ){
             const
-                list = {
-                    computer: '/computer.png',
-                    router: '/router.png',
-                    server: '/server.png',
-                    switch: '/switch.png',
-                    connector: '/connector.png',
-                    cable: '/cable.png'
-                };
+                list = UrlMap;
             $.each( list, function ( key ) {
                 map[ key ] = {
                     src: utils.url( this ),
@@ -728,13 +731,14 @@ const InterfaceManager = {
             components = this.components,
             state = this.states;
                 if ( ( utils.isEmpty( map ) || !map.cable ) && current.mode == 2 )
-                    return console.log( 'error' );
-                        button.attr( 'data-btn', state.second ).text( 'Tester' );
-                        utils.hide( this.components.saveButton );
-                            utils.show( components.dataSpace );
-                            utils.hide( components.first );
-                            utils.hide( components.begin );
-                            utils.show( components.second );
+                    return this.error( [
+                        "Aucun élément ou cable sélectionné"
+                    ] );
+                    button.attr( 'data-btn', state.second ).text( 'Tester' );
+                    utils.hide( this.components.saveButton );
+                utils.hide( components.first );
+                utils.hide( components.begin );
+                utils.show( components.second );
         initSecondEngine();
     },
     finalyseError( error ) {
@@ -779,7 +783,7 @@ const InterfaceManager = {
                                 Simulation.verify();
                                 if ( Simulation.errors.length === 0 && current.mode != 3 )
                                     utils.show( saveButton );
-                                else
+                                else if ( current.mode != 3 )
                                     return obj.finalyseError( Simulation.errors );
                             }
                         }
@@ -800,8 +804,6 @@ const InterfaceManager = {
                 this.openApi();
             return this.interface_3();
         } else if ( param_1 && $.isObject( param_1 ) ) {
-            if ( param_2 === true )
-                current.mode = 3;
             if ( param_2 != true ) {
                 /**
                     * Here we have to do
@@ -821,6 +823,7 @@ const InterfaceManager = {
                     * show the simulation
                     *  
                 */
+                current.mode = 3;
                 const data = param_1;
                     this.setApiName( data.name );
                     this.openApi();
@@ -831,10 +834,9 @@ const InterfaceManager = {
         }
     }
 };
-Simulation.InterfaceManager = InterfaceManager;
 
-/*Digital( function () {
-    const 
-        save = JSON.parse( $.getStorage( 'save' ) );
-    InterfaceManager.openInterFace( save, true );
-} );*/
+Simulation.InterfaceManager = InterfaceManager;
+Simulation.utils = utils;
+Simulation.events = events;
+Simulation.fx = fx;
+Simulation.createSimulationItem = createSimulationItem;

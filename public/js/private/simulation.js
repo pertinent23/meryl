@@ -18,8 +18,8 @@ const Simulation = {
     clean() {
         return Digital.update( this, {
             focused: 0,
-            name: '',
-            description: '',
+            name: ' ',
+            description: ' ',
             errors: [],
             cables: { },
             devices: {},
@@ -60,6 +60,20 @@ const Simulation = {
                 this.map[ id ] = obj;
         return id;
     },
+    getPhone( node ) {
+        const 
+            id = this.generateId(),
+            obj = new Phone( node, id );
+                this.map[ id ] = obj;
+        return id;
+    },
+    getPad( node ) {
+        const 
+            id = this.generateId(),
+            obj = new Pad( node, id );
+                this.map[ id ] = obj;
+        return id;
+    },
     getCable( node ) {
         const 
             id = this.generateId(),
@@ -80,7 +94,9 @@ const Simulation = {
             name.toLowerCase() === 'switch' ? this.getSwitch( node ) :
             name.toLowerCase() === 'cable' ? this.getCable( node ) :
             name.toLowerCase() === 'router' ? this.getRouter( node ) : 
-        this.getConnector( node ); 
+            name.toLowerCase() === 'pad' ? this.getPad( node ) :
+            name.toLowerCase() === 'phone' ? this.getPhone( node ) :
+            this.getConnector( node ) 
     },
     remove( item ) {
         if ( item instanceof Components ) {
@@ -103,21 +119,24 @@ const Simulation = {
                 }
             }
         let delay = 350;
-        for ( let key in Simulation.map ) {
-            const item = Simulation.map[ key ];
-            if( item instanceof Cable )
-                continue;
-                    for( let subkey in Simulation.map ) {
-                        const subitem = Simulation.map[ subkey ];
-                        if ( subitem instanceof Cable || subitem.isSame( item ) )
-                            continue;
-                                setTimeout( function () {
-                                    return item.sendTo( subitem.getId() );
-                                }, delay );
-                        delay += 300;
-                    }
-            delay += 50;
-        }
+            if ( Simulation.errors.length === 0 ) {
+                for ( let key in Simulation.map ) {
+                    const item = Simulation.map[ key ];
+                    if( item instanceof Linker )
+                        continue;
+                            for( let subkey in Simulation.map ) {
+                                const subitem = Simulation.map[ subkey ];
+                                if ( subitem instanceof Linker || subitem.isSame( item ) )
+                                    continue;
+                                        setTimeout( function () {
+                                            return item.sendTo( subitem.getId() );
+                                        }, delay );
+                                delay += 300;
+                            }
+                    delay += 50;
+                }
+            }
+        return Simulation.errors;
     },
     reportError( obj, error ) {
         if ( obj instanceof Components ) 
@@ -128,12 +147,84 @@ const Simulation = {
         return this;
     },
     generateNetwork( data ) {
-        console.log( data );
+        const items = [];
+        const fx = Simulation.fx;
+        const workSpace = data.workSpace;
+        const actualSize = Simulation.utils.getDropZoneSize();
+        const used = {
+            rx( _ ) {
+                let
+                    base = _ - workSpace.x,
+                    nbase = base + actualSize.x,
+                    k = actualSize.with / workSpace.with,
+                    r = nbase * k;
+                return r;
+            },
+            ry( _ ) {
+                let
+                    base = _ - workSpace.y,
+                    nbase = base + actualSize.y,
+                    k = actualSize.height / workSpace.height,
+                    r = nbase * k;
+                return r;
+            }
+        };
+            for( let id in data.map ) {
+                id = parseInt( id );
+                let node, obj;
+                const 
+                    item = data.map[ id ],
+                    needed = item.data;
+                    if ( item.type.toLowerCase() !== 'cable' ) {
+                        const 
+                            bitem = createSimulationItem( needed.src, needed.infos, Simulation.utils.name( needed.name ) );
+                            node = fx.addToWorkSpace( fx.createCurrentItem( bitem ) );
+                            node.css( {
+                                left: `${ used.rx( needed.x ) }px`,
+                                top: `${ used.ry( needed.y ) }px`
+                            } );
+                        obj = this.getById(
+                            this.getComponentByName( node, needed.infos )
+                        );
+                    } else {
+                        node = fx.createCurrentCable();
+                            for( let key in node ) {
+                                    Simulation.utils.show( node[ key ] );
+                                fx.addToWorkSpace( node[ key ] );
+                            }
+                        obj = this.getById(
+                            this.getComponentByName( node, 'cable' )
+                        );
+                    }
+                obj.ports = item.connection;
+                obj.setData( needed );
+                obj.setId( id );
+                items.push( obj );
+                this.map[ id ] = obj;
+            }
+                for ( const item of items ) {
+                    for ( let index = 0; index < item.ports.length; index++ ) {
+                        const id = item.ports[ index ];
+                        item.ports[ index ] = this.getById( id );
+                    }
+                    item.restructure();
+                }
+            for( let id in this.cables )
+                this.cables[ id ].realignment();
+        return Digital.update( this, {
+            errors: [ ],
+            name: data.name,
+            description: data.description,
+            id: data.maxId
+        } );
     },
     saveNetWork() {
-        const result = { };
-            result.width = window.innerWidth;
-            result.height = window.innerHeight;
+        const 
+            result = {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                workSpace: Simulation.utils.getDropZoneSize()
+            };
             result.maxId = this.id;
             result.map = {};
                 for( let id in this.map ) {
@@ -207,12 +298,16 @@ class Components{
                 } );
                     node.on( {
                         contextmenu( e ) {
+                            if ( obj instanceof Linker )
+                                return;
                             e.preventDefault();
                             const devices = [];
                                 for( let oid in Simulation.devices ) {
+                                    if ( Simulation.devices[ oid ] instanceof Linker )
+                                        continue;
                                     if ( oid != id ) {
                                         const
-                                            data =  `${ Simulation.getById( oid ).getType().toLowerCase() }: ${ Simulation.getById( oid ).getId() }`, 
+                                            data =  `${ Simulation.utils.name( Simulation.getById( oid ).getType().toLowerCase() ) }: ${ Simulation.getById( oid ).getId() }`, 
                                             item = Simulation.InterfaceManager.createMoreOption(
                                                 data
                                             ).click( function () {
@@ -262,6 +357,11 @@ class Components{
         return this.ports.indexOf( elt ) != -1;
     }
 
+    /**
+     * 
+        * @param {Components} elt 
+        * @returns
+    */
     link( elt ) {
         /**
             *  
@@ -313,8 +413,8 @@ class Components{
                 return this;
                     if ( index != -1 ) {
                                 delete this.ports[ index ];
-                            obj.unlink( this );
-                        this.restructure();
+                            this.restructure();
+                        obj.unlink( this );
                     }
         return this;
     }
@@ -333,7 +433,7 @@ class Components{
 
     empty() {
         for( const cable of this.ports ) {
-            if ( cable instanceof Cable ) {
+            if ( cable instanceof Components ) {
                 this.unlink( cable );
             }
         }
@@ -348,7 +448,9 @@ class Components{
     }
 
     removeAll() {
-        this.getNode().remove();
+        try{
+            this.getNode().remove();
+        } catch ( e ) { }
             this.remove();
         Simulation.remove( this );
     }
@@ -385,13 +487,15 @@ class Components{
                         return this.sendPaquet( myPaquet );
                     } else {
                         if( this instanceof Cable ) {
-                            for( const item of this.ports ) {
-                                const obj = this;
-                                if ( !item.isSame( entry ) && !paquet.inWay( item ) )
-                                    return paquet.move( function () {
-                                        return item.turnel( paquet.clone().add( obj ).setEntry( obj ) );
-                                    }, this );
-                            }
+                            if ( this.removed )
+                                return this;
+                                    for( const item of this.ports ) {
+                                        const obj = this;
+                                        if ( !item.isSame( entry ) && !paquet.inWay( item ) )
+                                            return paquet.move( function () {
+                                                return item.turnel( paquet.clone().add( obj ).setEntry( obj ) );
+                                            }, this );
+                                    }
                         }
                         else {
                             for( const item of this.ports ) {
@@ -412,11 +516,13 @@ class Components{
                     }
                 } else if ( paquet.request === 'verify' ) {
                     if ( !paquet.inWay( this ) ) {
-                        paquet.add( this );
+                        if ( paquet.getWay().length != 0 || !( this instanceof Connector ) ) {
+                            paquet.add( this );
                             for ( const device of this.ports ) {
                                 if ( device instanceof Components )
                                     device.turnel( paquet.clone() );
                             }
+                        }
                         return this.check();
                     }
                 }
@@ -533,6 +639,13 @@ class Components{
                         copy[ key ] = item;
             }
 
+            if ( !( this instanceof Cable ) ) {
+                const 
+                    rect = this.getBoundingClientRect();
+                copy.y = rect.top;
+                copy.x = rect.left;
+            }
+
             for( const item of this.getPorts() ) {
                 if ( item instanceof Components ) 
                     connection.push( item.getId() );
@@ -627,6 +740,10 @@ class Paquet{
         this.node = node;
     }
 
+    async move( p1, p2 ) {
+        return { p1, p2 };
+    }
+
     getHeaders() {
         return this.headers;
     }
@@ -684,7 +801,7 @@ class PaquetRequest extends Paquet{
         return this;
     }
 
-    move( then, obj ) {
+    async move( then, obj ) {
         let 
             time = window.innerWidth * ( 96 / 100 );
             time = time >= 700 ? 700 : time;
@@ -764,7 +881,7 @@ class PaquetObject extends Paquet{
         } );
     }
 
-    move( { x1, y1, x2, y2 }, then ) {
+    async move( { x1, y1, x2, y2 }, then ) {
         let finish = false;
         const 
             mx = this.node.offsetWidth() / 2,
@@ -828,11 +945,51 @@ class Computer extends Components{
     }
 }
 
+class Pad extends Components{
+    limit = Infinity;
+    type = 'PAD';
+
+    constructor( node, id, type = 'PAD' ) {
+        super( node, id, type );
+    }
+}
+
+class Phone extends Components{
+    limit = Infinity;
+    type = 'PHONE';
+
+    constructor( node, id, type = 'PHONE' ) {
+        super( node, id, type );
+    }
+}
+
 Computer.isComputer = function ( elt ) {
     if ( elt instanceof Computer )
         return true;
     return false;
 };
+
+Pad.isPad = function ( elt ) {
+    if ( elt instanceof Pad )
+        return true;
+    return false;
+};
+
+Phone.isPhone = function ( elt ) {
+    if ( elt instanceof Phone )
+        return true;
+    return false;
+};
+
+Components.isEndSystem = function ( elt ) {
+    if ( Computer.isComputer( elt ) || Pad.isPad( elt ) || Phone.isPhone( elt ) )
+        return true;
+    return false;
+};
+
+Components.isHostSystem = ( elt ) => ( 
+    elt instanceof Host 
+);
 
 class Linker extends Components{
     limit = Infinity;
@@ -844,28 +1001,42 @@ class Linker extends Components{
     async turnel( paquet ) {
         return super.turnel( paquet );
     }
-
-    check() {
-        /**
-            * 
-            * Here we can now check
-            * our cable
-            *  
-        */
-        const [ component_1, component_2 ] = this.ports;
-            if ( component_1.isSameType( component_2 ) && Computer.isComputer( component_1 ) )
-                return Simulation.errors.push( {
-                    error: `Erreur: ( ${ this.getType().toLowerCase() } ${ this.getId() } ) 02 ordinateurs ne peuvent être directement connectés`,
-                    node: this.getNode().bar
-                } );
-        return this;
-    }
 }
 
 class Connector extends Linker{
     limit = 3;
     constructor( node, id, type = 'CONNECTOR' ) {
         super( node, id, type );
+    }
+
+    findHost() {
+        const result = [ ];
+            for( const cable of this.ports ) {
+                for ( const item of cable.getPorts() ) {
+                    if ( Components.isHostSystem( item ) ) {
+                            result.push( cable );
+                        break;
+                    }
+                }
+            }
+        return result;
+    }
+
+    check() {
+        super.check();
+        /** 
+            * 
+            * Now we can check how
+            * connector
+            *  
+        */
+        if ( this.ports.length === 1 )
+            return Simulation.errors.push( {
+                error: `Erreur: ( ${ this.getType().toLowerCase() } ${ this.getId() } )`
+                + ' Un connecteur doit être relier à plus d\'un équipement.',
+                node: this.getNode().bar
+            } );
+        return this;
     }
 }
 
@@ -1041,6 +1212,46 @@ class Cable extends Linker{
         return Simulation.remove( this );
     }
 
+    check() {
+        /**
+            * 
+            * Here we can now check
+            * our cable
+            *  
+        */
+        const [ component_1, component_2 ] = this.ports;
+            if ( component_1.isSameType( component_2 ) ) {
+                if ( Computer.isComputer( component_1 ) ) {
+                    return Simulation.errors.push( {
+                        error: `Erreur: ( ${ this.getType().toLowerCase() } ${ this.getId() } ) 02 ordinateurs ne peuvent être directement connectés`,
+                        node: this.getNode().bar
+                    } );
+                } else {
+                    if ( Phone.isPhone( component_1 ) ) {
+                        return Simulation.errors.push( {
+                            error: `Erreur: ( ${ this.getType().toLowerCase() } ${ this.getId() } ) 02 téléphones portables ne peuvent être directement connectés`,
+                            node: this.getNode().bar
+                        } );
+                    } else if ( Pad.isPad( component_1 ) ) {
+                        return Simulation.errors.push( {
+                            error: `Erreur: ( ${ this.getType().toLowerCase() } ${ this.getId() } ) 02 tablets ne peuvent être directement connectés`,
+                            node: this.getNode().bar
+                        } );
+                    }
+                }
+            } else {
+                if ( Components.isEndSystem( component_1 ) || Components.isEndSystem( component_2 ) ) {
+                    if ( component_1 instanceof Router || component_2 instanceof Router  ) {
+                        return Simulation.errors.push( {
+                            error: `Erreur: ( ${ this.getType().toLowerCase() } ${ this.getId() } ) un routeur ne peut être directement connecté à un end system.`,
+                            node: this.getNode().bar
+                        } );
+                    } 
+                }
+            }
+        return this;
+    }
+
     unlink( obj ) {
         super.unlink( obj );
             this.empty();
@@ -1068,8 +1279,7 @@ class Host extends Components{
     }
 
     receive( paquet ){
-        if ( paquet instanceof PaquetObject )
-            paquet.remove();
+        return super.receive( paquet );
     }
 
     check() {
@@ -1122,4 +1332,6 @@ Simulation.ComponentList.Connector = Connector;
 Simulation.ComponentList.Paquet = Paquet;
 Simulation.ComponentList.PaquetRequest = PaquetRequest;
 Simulation.ComponentList.Headers = Headers;
+Simulation.ComponentList.Pad = Pad;
+Simulation.ComponentList.Phone = Phone;
 window.Simulation = Simulation;

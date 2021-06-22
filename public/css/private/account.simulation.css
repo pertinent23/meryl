@@ -408,12 +408,9 @@
     color: #AAAAAA;
 }
 
+.simulation-card:hover,
 .simulation-card{
-    border-top: 3px solid var( --blue-2 ) !important;
-}
-
-.simulation-card:hover{
-    border-top-color: var( --blue-1 ) !important;
+    border-top: 3px solid var( --blue-1 ) !important;
 }
 
 .simulation-card .card-head{
@@ -433,33 +430,33 @@
     color: #555555;
 }
 
-.simulation-card a:hover,
-.simulation-card a{
+.simulation-card .startSimulationButton:hover,
+.simulation-card .startSimulationButton{
     font-size: 0.95em;
-    background-color: var( --blue-2 );
+    background-color: var( --blue-1 );
     color: #FFFFFF;
     border-width: 2px;
     font-weight: bold;
     border-radius: 3px !important;
 }
 
-.simulation-card a:hover{
-    background-color: var( --blue-1 );
+.simulation-card .showSimulationButton:hover,
+.simulation-card .showSimulationButton{
+    font-size: 0.95em;
+    border: 3px solid var( --blue-1 );
+    color: var( --blue-1 );
+    border-width: 2px;
+    font-weight: bold;
+    border-radius: 3px !important;
 }
 
 .simulation-card .btn-outline{
     font-size: 0.95em;
-    border-color: var( --blue-2 );
-    color: var( --blue-2 );
+    border-color: var( --blue-1 );
+    color: var( --blue-1 );
     border-width: 2px;
     font-weight: bold;
     border-radius: 3px !important;
-    background-color: transparent !important;
-}
-
-.simulation-card .btn-outline:hover{
-    border-color: var( --blue-1 );
-    color: var( --blue-1 );
     background-color: transparent !important;
 }
 

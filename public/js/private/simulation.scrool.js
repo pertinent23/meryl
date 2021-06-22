@@ -11,8 +11,8 @@ if ( Object.isExtensible( window.Simulation ) ) {
             }
         };
             if ( result.width >= 650 ) {
-                result.items.width = 75;
-                result.items.height = 75;
+                result.items.width = 80;
+                result.items.height = 80;
                 result.buttons.width = 50;
                 result.buttons.height = 50;
             } else {
@@ -51,7 +51,7 @@ if ( Object.isExtensible( window.Simulation ) ) {
             }
 
             ScrollData.barLength = parseFloat( elt.container.css( axes ).toInt() );
-            ScrollData.contentLength = nbr * ( data.items[ axes ] + 3 );
+            ScrollData.contentLength = nbr * ( data.items[ axes ] + 5 );
             ScrollData.containerLength = ScrollData.barLength - ( data.buttons[ axes ] - 2 );
             const 
                 overflow = ScrollData.containerLength - ScrollData.contentLength;

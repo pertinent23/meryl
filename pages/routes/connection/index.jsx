@@ -14,7 +14,7 @@ export default function Connection () {
                         <div className="col col-icon box-col d-none border-0 d-lg-flex flex-column justify-content-center align-items-center">
                             <img src="/img/iconf.png" alt="icon" className="img box-icon"/>
                             <div className="box-img-text mt-4">
-                                <a href="/"> Learning Network </a>
+                                <a href="/"> GreatNet Simulator </a>
                             </div>
                         </div>
                         <div className="col-12 col-lg-6 col-form box-col d-flex flex-column px-0 py-3">

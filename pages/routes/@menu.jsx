@@ -7,7 +7,7 @@ export default function Menu () {
                 </div>
                 <div className="content-name d-flex align-items-center ml-1 pt-4">
                     <span>
-                        <a href="/"> Great Learning </a>
+                        <a href="/"> GreatNet Simulator </a>
                     </span>
                 </div>
             </div>

@@ -50,7 +50,8 @@ export default function Simulation () {
                                                                 Une petite description de la simulation
                                                             </div>
                                                             <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                                <a href="#" className="btn px-3 py-2"> Commencer </a>
+                                                                <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
+                                                                <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -63,7 +64,8 @@ export default function Simulation () {
                                                                 Une petite description de la simulation
                                                             </div>
                                                             <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                                <a href="#" className="btn px-3 py-2"> Commencer </a>
+                                                                <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
+                                                                <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
                                                             </div>
                                                         </div>
                                                     </div>
