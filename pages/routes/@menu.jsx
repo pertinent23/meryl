@@ -1,3 +1,4 @@
+import { TITLE } from './@root';
 export default function Menu () {
     return (
         <div className="container-fluid d-flex flex-row align-items-center px-md-3 px-lg-4 pb-3 my-0" id="menu">
@@ -7,7 +8,7 @@ export default function Menu () {
                 </div>
                 <div className="content-name d-flex align-items-center ml-1 pt-4">
                     <span>
-                        <a href="/"> GreatNet Simulator </a>
+                        <a href="/"> { TITLE } </a>
                     </span>
                 </div>
             </div>

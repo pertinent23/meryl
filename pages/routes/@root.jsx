@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { element, string } from 'prop-types';
 import Menu from './@menu';
 
-export const TITLE = 'Great Learning';
+export const TITLE = 'GreatNet Simulator';
 export default function Root( { children, page } ) {
     return (
         <Fragment>

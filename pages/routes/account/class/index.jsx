@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { Fragment } from 'react';
 import Navigation from './../@navigation';
+import ApiClass from './../@apiClass';
 
 export const page = 'account.class';
 export default function Class () {
@@ -137,6 +138,7 @@ export default function Class () {
                         </div>
                     </div>
                 </div>
+                <ApiClass />
             </div>
         </Fragment>
     );

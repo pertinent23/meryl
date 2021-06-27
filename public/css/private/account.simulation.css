@@ -66,6 +66,15 @@
     color: var( --blue-4 );
 }
 
+.api #class-icon{
+    background-color: var( --blue-4 );
+    border-radius: 100%;
+    padding: 12px 12px;
+    font-size: 0.85em;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
 .more-error .start .name{
     color: #FF1122;
 }
@@ -82,12 +91,80 @@
     flex: 1;
 }
 
-.api .end > .row{
+.api .end .end-content{
     flex: 1;
 }
 
 .api .end .workSpace{
     flex: 1;
+}
+
+.api-class .end{
+    overflow: hidden !important;
+}
+
+.api-class .end div{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.api-class .end .row{
+    max-width: 100% !important;
+}
+
+.content-api-class-button .member{
+    background-color: var( --purple-2 );
+    color: #FFFFFF;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.content-api-class-button .statistic{
+    color: var( --purple-2 );
+    border: 2px solid var( --purple-2 );
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.memberList{
+    min-width: 300px;
+    background-color: rgba( 255, 255, 255, 0.6 );
+    -webkit-backdrop-filter: blur( 10px );
+    backdrop-filter: blur( 10px );
+}
+
+.memHead{
+    height: 50px;
+}
+
+.memHead .name{
+    font-size: 0.85em;
+    font-weight: 600;
+    flex: 1;
+}
+
+.membItems-container{
+    flex: 1;
+    overflow: hidden;
+}
+
+.membItems-container .list{
+    overflow: auto;
+    height: 450px;
+}
+
+.member-item{
+    background-color: transparent;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var( --purple-2 );
+}
+
+.member-item .item-icon{
+    background-color: var( --purple-2 );
+    color: #FFFFFF;
+    padding: 8px 10px;
+    border-radius: 100%;
 }
 
 .api-text{
@@ -410,18 +487,18 @@
 
 .simulation-card:hover,
 .simulation-card{
-    border-top: 3px solid var( --blue-1 ) !important;
+    border-top: 3px solid var( --purple-2 ) !important;
 }
 
 .simulation-card .card-head{
-    color: var( --blue-2 );
     font-size: 1.2em;
     padding: 15px 0px;
     font-weight: bold;
 }
 
+.simulation-card .card-head,
 .simulation-card:hover .card-head{
-    color: var( --blue-1 );
+    color: var( --purple-2 );
 }
 
 .simulation-card .description{
@@ -432,8 +509,8 @@
 
 .simulation-card .startSimulationButton:hover,
 .simulation-card .startSimulationButton{
-    font-size: 0.95em;
-    background-color: var( --blue-1 );
+    font-size: 0.85em;
+    background-color: var( --purple-2 );
     color: #FFFFFF;
     border-width: 2px;
     font-weight: bold;
@@ -442,18 +519,18 @@
 
 .simulation-card .showSimulationButton:hover,
 .simulation-card .showSimulationButton{
-    font-size: 0.95em;
-    border: 3px solid var( --blue-1 );
-    color: var( --blue-1 );
+    font-size: 0.85em;
+    border: 3px solid var( --purple-2 );
+    color: var( --purple-2 );
     border-width: 2px;
     font-weight: bold;
     border-radius: 3px !important;
 }
 
 .simulation-card .btn-outline{
-    font-size: 0.95em;
-    border-color: var( --blue-1 );
-    color: var( --blue-1 );
+    font-size: 0.85em;
+    border-color: var( --purple-2 );
+    color: var( --purple-2 );
     border-width: 2px;
     font-weight: bold;
     border-radius: 3px !important;
@@ -465,7 +542,7 @@
 }
 
 .creation-box{
-    background-color: var( --blue-4 );
+    background-color: var( --purple-2 );
     border-radius: 3px;
     background-image: url( "/img/private/server1.jpg" );
     background-size: 100% 100%;

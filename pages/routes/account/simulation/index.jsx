@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Fragment } from 'react';
 import Navigation from './../@navigation';
-import SimulationApi from './../@api';
+import SimulationApi from '../@apiSimulation';
 
 export const page = 'account.simulation';
 export default function Simulation () {
