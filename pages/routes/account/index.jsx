@@ -11,7 +11,7 @@ export default function AccountHome () {
                 <link rel="stylesheet" href="/css/private/account.home.css"/>
             </Head>
             <div className="container-fuid d-flex flex-column account-container justify-content-center align-items-center py-0 px-0">
-                <Navigation page={ page }/>
+                <Navigation page={ page } href={ '/routes/account/simulation' }/>
                 <div className="w-100 py-3 d-flex">
                     <div className="content-items container-fluid py-4 d-flex flex-column">
                         <div className="message d-block text-center py-3"> Toutes les options </div>
@@ -28,7 +28,7 @@ export default function AccountHome () {
                                                     Tester vos éleves.
                                                 </p>
                                                 <div className="container-fluid d-flex justify-content-end">
-                                                    <a href="#" className="btn btn-outline px-4 py-1"> Aller </a>
+                                                    <a href="/routes/account/simulation" className="btn btn-outline px-4 py-1"> Aller </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -43,7 +43,7 @@ export default function AccountHome () {
                                                     de ces classes.
                                                 </p>
                                                 <div className="container-fluid d-flex justify-content-end">
-                                                    <a href="#" className="btn btn-outline px-4 py-1"> Aller </a>
+                                                    <a href="/routes/account/class" className="btn btn-outline px-4 py-1"> Aller </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -61,7 +61,7 @@ export default function AccountHome () {
                                                     Entrainer vous avec des simulations créées par des proffeseurs.
                                                 </p>
                                                 <div className="container-fluid d-flex justify-content-end">
-                                                    <a href="#" className="btn btn-outline px-4 py-1"> Aller </a>
+                                                    <a href="/routes/account/training" className="btn btn-outline px-4 py-1"> Aller </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@ export default function AccountHome () {
                                                     Modifier les informations de votre compte, ( nom, prénom, .... ).
                                                 </p>
                                                 <div className="container-fluid d-flex justify-content-end">
-                                                    <a href="#" className="btn btn-outline px-4 py-1"> Aller </a>
+                                                    <a href="/routes/account/simulation/my" className="btn btn-outline px-4 py-1"> Aller </a>
                                                 </div>
                                             </div>
                                         </div>

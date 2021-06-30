@@ -13,7 +13,7 @@ export default function Menu () {
                 </div>
             </div>
             <div className="content-button flex-column justify-content-center d-none d-md-flex">
-                <input type="button" value="Connection" id="menu-action" className="d-block mt-3"/>
+                {/**<input type="button" value="Connection" id="menu-action" className="d-block mt-3"/>*/ }
             </div>
         </div>
     );

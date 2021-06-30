@@ -1,7 +1,7 @@
 .message{
     font-size: 1.25em;
     font-weight: 600;
-    color: var( --blue-1 );
+    color: var( --purple-2 );
 }
 
 *{
@@ -473,8 +473,8 @@
 #accordion .card .head-content{
     padding: 30px 15px;
     background-color: #FFFFFF;
-    border-top: 3px solid var( --blue-1 );
-    color: var( --blue-1 );
+    border-top: 3px solid var( --purple-2 );
+    color: var( --purple-2 );
 }
 
 #accordion .card-content{
@@ -507,6 +507,8 @@
     color: #555555;
 }
 
+.simulation-card .openClassButton:hover,
+.simulation-card .openClassButton,
 .simulation-card .startSimulationButton:hover,
 .simulation-card .startSimulationButton{
     font-size: 0.85em;
@@ -537,8 +539,33 @@
     background-color: transparent !important;
 }
 
+.simulation-card .btn-outline:hover{
+    background-color: var( --purple-2 ) !important;
+    color: #FFFFFF;
+}
+
 .simulation-card .card-body div{
     overflow: auto;
+}
+
+.simulation-card{
+    overflow: hidden !important;
+}
+
+.simulation-card::after{
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 150px;
+    height: 60px;
+    background-color: var( --purple-2 );
+    left: -60px;
+    bottom: -30px;
+    transform: rotate( 40deg );
+}
+
+.content-navbar::before{
+    background-image: linear-gradient( 120deg, rgba( 72, 55, 129, 0.8 ), rgba( 85, 100, 255, 0.6 ) );
 }
 
 .creation-box{
@@ -548,6 +575,8 @@
     background-size: 100% 100%;
     overflow: hidden;
     border-top: 3px solid #FFFFFF;
+    border-radius: 4px !important;
+    overflow: hidden !important;
 }
 
 .creation-box::before{
@@ -558,9 +587,10 @@
     width: 100%;
     left: 0px;
     top: 0px;
-    background-image: linear-gradient( 120deg, rgba( 85, 100, 255, 0.6 ), rgba( 153, 175, 255, 0.9 ) );
-    -webkit-backdrop-filter: blur( 7px );
-    backdrop-filter: blur( 7px );
+    background-image: linear-gradient( 120deg, rgba( 72, 55, 129, 0.8 ), rgba( 85, 100, 255, 0.6 ) );
+    -webkit-backdrop-filter: blur( 3px );
+    backdrop-filter: blur( 3px );
+    border-radius: 4px !important;
 }
 
 .creation-box .title{
@@ -587,7 +617,7 @@
 .creation-box input::placeholder,
 .creation-box textarea::placeholder{
     color: #000000;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .creation-box .btn,
@@ -607,26 +637,38 @@
 
 .box-add{
     background-color: #FFFFFF;
-    border-bottom: 5px solid var( --blue-1 );
-    border-top: 30px solid var( --blue-1 );
     overflow: hidden;
+    padding-bottom: 80px !important;
+    padding-top: 100px !important;
 }
 
 .box-add::before{
     content: " ";
     display: block;
     position: absolute;
-    height: 100px;
-    width: 100px;
-    left: -40px;
-    bottom: -50px;
-    background-color: var( --blue-1 );
-    border-radius: 100%;
+    height: 150px;
+    width: 120%;
+    left: -10%;
+    top: -80px;
+    transform: rotate( 10deg );
+    background-color: var( --purple-2 );
+}
+
+.box-add::after{
+    content: " ";
+    display: block;
+    position: absolute;
+    height: 150px;
+    width: 120%;
+    left: -10%;
+    bottom: -80px;
+    transform: rotate( 10deg );
+    background-color: var( --purple-2 );
 }
 
 .box-add .title{
     font-size: 0.95em;
-    color: var( --blue-1 );
+    color: var( --purple-2 );
     font-weight: 600;
 }
 
@@ -634,7 +676,7 @@
     padding: 10px 25px;
     font-size: 0.85em;
     border: 2px solid transparent;
-    border-bottom-color: var( --blue-1 );
+    border-bottom-color: var( --purple-2 );
     background-color: #FAFAFF;
     border-radius: 4px;
     outline: none;
@@ -642,10 +684,15 @@
     backdrop-filter: blur( 70px );
 }
 
+.box-add .form input::placeholder{
+    opacity: 0.8;
+    color: #000000;
+}
+
 .box-add .btn:hover,
 .box-add .btn{
     font-size: 0.83em;
-    background-color: var( --blue-1 );
+    background-color: var( --purple-2 );
     color: #FFFFFF;
     font-weight: bold;
 }
@@ -661,6 +708,15 @@
 }
 
 @media screen and ( min-width: 576px ) {
+    .for-training{
+        transform: scale( 0.99 );
+        transition: transform 0.3s;
+    }
+
+    .for-training:hover{
+        transform: scale( 1 );
+    }
+
     .dataSpace{
         height: 100% !important;
         max-height: 100% !important;

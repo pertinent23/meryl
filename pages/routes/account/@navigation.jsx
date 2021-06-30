@@ -43,7 +43,7 @@ const generate = function ( page ) {
     return result;
 };
 
-export default function Navigation( { page, title, description, href, onClick } ) {
+export default function Navigation( { page, title, description, href, onClick, show } ) {
     return (
         <Fragment>
             <div className="container-fluid content-navbar px-0 pt-3 bg-danger mt-0">
@@ -65,14 +65,17 @@ export default function Navigation( { page, title, description, href, onClick } 
                     <p className="jumb-text">
                         { description || "Utiliser l'application pour créer des simultations, créer des classes, partager vos simulations a vos élèves, évaluer vos élèves." }
                     </p>
-                    <a 
-                        href={ href || '#' } 
-                        className="btn px-4 py-2 mt-5 button"
-                        onClick={ onClick || function () {
-                            //Empty fonction
-                        } }> 
-                            Commencer 
-                    </a>
+                    {
+                        show != false ? 
+                        <a 
+                            href={ href || '#' } 
+                            className="btn px-4 py-2 mt-5 button"
+                            onClick={ onClick || function () {
+                                //Empty fonction
+                            } }> 
+                                Commencer 
+                        </a> : ''
+                    }
                 </div>
             </div>
         </Fragment>

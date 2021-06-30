@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 export default function Api () {
     return (
         <Fragment>
-            <div className="api api-class d-flex flex-column">
+            <div className="api api-class d-none flex-column">
                 <div className="container-fluid start d-flex align-items-center border-bottom">
                     <div className="icon mr-3" id="class-icon"> NC </div>
                     <div className="name" id="class-name"> Nom de la classe </div>

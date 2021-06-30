@@ -19,9 +19,11 @@ export default function Home () {
                     <div className="col-12 col-lg-6 pres-item d-flex justify-content-center align-items-center py-sm-4">
                         <span className="content-text d-block py-4 px-3 px-sm-5">
                             <span className="text-title d-block py-2"> Réseaux informatiques </span>
-                            Créer une classe, créer une simulation et ajouter là dans la classe,
-                            pour apprendre le fonctionnement des réseaux informatiques à
-                            vos élèves.
+                            <span className="ml-2 ml-md-3 mt-md-3 d-block text-center">
+                                Créer une classe, créer une simulation et ajouter là dans la classe,
+                                pour apprendre le fonctionnement des réseaux informatiques à
+                                vos élèves.
+                            </span>
                         </span>
                     </div>
                 </div>

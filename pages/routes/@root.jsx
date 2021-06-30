@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 import { element, string } from 'prop-types';
 import Menu from './@menu';
+import Loader from './@loader';
 
 export const TITLE = 'GreatNet Simulator';
 export default function Root( { children, page } ) {
@@ -19,6 +20,7 @@ export default function Root( { children, page } ) {
                 <script src="/libs/popper.min.js"></script>
                 <script src="/libs/digital-v2.0.0.min.js"></script>
             </Head>
+            <Loader />
             <div className="container-fluid main-container p-0">
                 <div className="container-fluid part menu-part p-0">
                     <Menu page={ page } />
@@ -27,6 +29,7 @@ export default function Root( { children, page } ) {
                     { children }
                 </div>
             </div>
+            <script src="/js/main.js"></script>
             <script src="/libs/bootstrap.bundle.min.js"></script>
         </Fragment>
     );

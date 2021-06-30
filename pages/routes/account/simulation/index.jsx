@@ -17,6 +17,7 @@ export default function Simulation () {
                     title={ 'Bienvenue dans simulation !! ' }
                     description={ 'Créer des simulations, travailler avec des simulations que vous avez déjà créées ou archivées et partager lès.' }
                     href={ "#" }
+                    show={ false }
                 />
                 <div className="container-fluid py-3 px-0 px-sm-2">
                     <div className="row">
@@ -119,7 +120,7 @@ export default function Simulation () {
                         <div className="col-12 col-md-5 col-lg-4">
                             <div className="message d-block d-md-none text-center py-3"> Gestion </div>
                             <div className="container-fluid py-4 px-1 px-md-0">
-                                <div className="simulation-creation-box creation-box d-flex flex-column pt-5 pb-3">
+                                <div className="simulation-creation-box creation-box d-flex flex-column pt-5 pb-3 mt-2">
                                     <div className="title text-center"> Créer une simulation </div>
                                     <div className="form d-flex flex-column align-items-center py-4">
                                         <input type="text" name="simulation-creation-name" id="simulation-creation-name" placeholder="Nom de la simulation: " className="my-3" />
