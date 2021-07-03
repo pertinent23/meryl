@@ -6,90 +6,132 @@ export default function Api () {
             <div className="api api-class d-none flex-column">
                 <div className="container-fluid start d-flex align-items-center border-bottom">
                     <div className="icon mr-3" id="class-icon"> NC </div>
-                    <div className="name" id="class-name"> Nom de la classe </div>
-                    <div className="_icon d-none justify-content-center align-items-center" id="close-api-class">
+                    <div className="name" id="class-shown-name"> Nom de la classe </div>
+                    <div className="_icon d-flex justify-content-center align-items-center" id="close-api-class">
                         <div className="items item1"></div>
                         <div className="items item2"></div>
                     </div>
                 </div>
                 <div className="end d-flex flex-column">
-                    <div className="container-fluid d-flex flex-column px-0 flex-sm-row end-content">
-                        <div className="workSpace d-block overflow-auto">
-                            <div className="container-fluid workSpace-content">
-                                <div className="row">
-                                    <div className="col">
-                                        <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0 w-100">
-                                            <div className="card-head">
-                                                Nom de la simulation
-                                            </div>
-                                            <div className="card-body px-0">
-                                                <div className="description">
-                                                    Une petite description de la simulation
-                                                </div>
-                                                <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                    <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
-                                                    <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-12 col-md-6">
-                                        <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0 w-100">
-                                            <div className="card-head">
-                                                Nom de la simulation
-                                            </div>
-                                            <div className="card-body px-0">
-                                                <div className="description">
-                                                    Une petite description de la simulation
-                                                </div>
-                                                <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                    <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
-                                                    <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="memberList d-flex flex-column">
-                            <div className="memHead d-flex">
-                                <div className="name d-flex align-items-center pl-3"> Liste des membres: </div>
-                                <div className="_icon d-flex justify-content-center align-items-center" id="close-member-list">
+                    <div className="contentSpace d-flex flex-column flex-md-row-reverse overflow-hidden">
+                        <div className="contentSpaceItem d-none flex-column dataSpaceItem memberSpace h-100 overflow-hidden">
+                            <div className="spaceHead d-flex justify-content-center flex-row-reverse align-items-center">
+                                <div className="d-block text-center" id="spaceTitle"> Membre de la classe </div>
+                                <div className="_icon d-flex justify-content-center align-items-center" id="close-member">
                                     <div className="items item1"></div>
                                     <div className="items item2"></div>
                                 </div>
                             </div>
-                            <div className="membItems-container d-flex overflow-hidden">
-                                <div className="list w-100 d-block overflow-auto">
-                                    <div className="list-group">
-                                        <div className="list-group-item border-top-0 member-item d-flex align-items-center">
-                                            <div className="item-icon"> N1 </div>
-                                            <span className="ml-2"> Nom 1 </span>
+                            <div className="spaceList d-block h-100 overflow-auto">
+                                <div className="spaceListContent p-2 d-block">
+                                    <div className="user container-fluid d-flex border justify-content-center align-items-center py-2 mt-2">
+                                        <div className="icon d-flex justify-content-center align-items-center"> N1 </div>
+                                        <div className="user-data flex-column d-flex flex-column pl-3">
+                                            <div className="user-name"> Nom1 </div>
+                                            <div className="user-options d-flex justify-content-end w-100">
+                                                <button className="user-action btn"> Supprimer </button>
+                                            </div>
                                         </div>
-                                        <div className="list-group-item border-top-0 member-item d-flex align-items-center">
-                                            <div className="item-icon"> N2 </div>
-                                            <span className="ml-2"> Nom 2 </span>
+                                    </div>
+                                    <div className="user container-fluid d-flex border justify-content-center align-items-center py-2 mt-2">
+                                        <div className="icon d-flex justify-content-center align-items-center"> N2 </div>
+                                        <div className="user-data flex-column d-flex flex-column pl-3">
+                                            <div className="user-name"> Nom2 </div>
+                                            <div className="user-options d-flex justify-content-end w-100">
+                                                <button className="user-action btn"> Supprimer </button>
+                                            </div>
                                         </div>
-                                        <div className="list-group-item border-top-0 member-item d-flex align-items-center">
-                                            <div className="item-icon"> N3 </div>
-                                            <span className="ml-2"> Nom 3 </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="contentSpaceItem d-flex flex-column dataSpaceItem statSpace h-100 overflow-hidden">
+                            <div className="spaceHead d-flex justify-content-center flex-row-reverse align-items-center">
+                                <div className="d-block text-center" id="spaceTitle"> Statistiques </div>
+                                <div className="_icon d-flex justify-content-center align-items-center" id="close-stat">
+                                    <div className="items item1"></div>
+                                    <div className="items item2"></div>
+                                </div>
+                            </div>
+                            <div className="spaceList d-block h-100 overflow-auto">
+                                <div className="spaceListContent p-2 d-block">
+                                    <div className="py-2">
+                                        <span className="data-title"> Effectif: </span>
+                                        <span className="data-val pl-3"> 95 élèves </span>
+                                    </div>
+                                    <div className="py-2">
+                                        <span className="data-title"> Pourcentage de réussite: </span>
+                                        <span className="progression my-2 ml-4">
+                                            <span className="progression-bar win"> 80% </span>
+                                        </span>
+                                    </div>
+                                    <div className="py-2">
+                                        <span className="data-title"> Taux de participation: </span>
+                                        <span className="progression my-2 ml-4">
+                                            <span className="progression-bar taux"> 45% </span>
+                                        </span>
+                                    </div>
+                                    <div className="py-2">
+                                        <span className="data-title"> Indice de progression: </span>
+                                        <span className="progression my-2 ml-4">
+                                            <span className="progression-bar indice"> 2% </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="contentSpaceItem d-flex flex-column listSpaceItem overflow-hidden">
+                            <div className="spaceSimulationList d-block h-100 overflow-auto">
+                                <div className="spaceSimulationListContent px-2">
+                                    <div className="row">
+                                        <div className="col">
+                                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0 w-100">
+                                                <div className="card-head">
+                                                    Nom de la simulation
+                                                </div>
+                                                <div className="card-body px-0">
+                                                    <div className="description">
+                                                        Une petite description de la simulation
+                                                    </div>
+                                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
+                                                        <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
+                                                        <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="list-group-item border-top-0 member-item d-flex align-items-center">
-                                            <div className="item-icon"> N4 </div>
-                                            <span className="ml-2"> Nom 4 </span>
+                                        <div className="col">
+                                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0 w-100">
+                                                <div className="card-head">
+                                                    Nom de la simulation
+                                                </div>
+                                                <div className="card-body px-0">
+                                                    <div className="description">
+                                                        Une petite description de la simulation
+                                                    </div>
+                                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
+                                                        <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
+                                                        <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="container-fluid content-api-class-button py-2 d-flex justify-content-end">
-                        <button type="button" className="btn statistic rounded mr-3"> Statistique </button>
-                        <button type="button" className="btn member rounded"> Membre </button>
+                    <div className="buttonSpace d-flex justify-content-end align-items-center pr-3 border-top">
+                        <div className="addSimulation d-flex justify-content-center align-items-center mr-3">
+                            <div className="items item1"></div>
+                            <div className="items item2"></div>
+                        </div>
+                        <button className="btn member mr-3" id="openMember"> Membres </button>
+                        <button className="btn-outline statistic py-1" id="openStat"> Statistiques </button>
                     </div>
                 </div>
             </div>
+            <script src="/js/private/class.manager.js"></script>
         </Fragment>
     );
 };

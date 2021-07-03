@@ -641,7 +641,7 @@ class Components{
 
             if ( !( this instanceof Cable ) ) {
                 const 
-                    rect = this.getBoundingClientRect();
+                    rect = this.getNode().getBoundingClientRect();
                 copy.y = rect.top;
                 copy.x = rect.left;
             }

@@ -93,6 +93,7 @@
 
 .api .end .end-content{
     flex: 1;
+    max-height: calc( 100% - 55px );
 }
 
 .api .end .workSpace{
@@ -103,68 +104,96 @@
     overflow: hidden !important;
 }
 
-.api-class .end div{
-    margin-left: 0px !important;
-    margin-right: 0px !important;
+.contentSpace{
+    flex: 1;
 }
 
-.api-class .end .row{
-    max-width: 100% !important;
-}
-
-.content-api-class-button .member{
-    background-color: var( --purple-2 );
-    color: #FFFFFF;
-    font-size: 0.85em;
-    font-weight: 600;
-}
-
-.content-api-class-button .statistic{
-    color: var( --purple-2 );
-    border: 2px solid var( --purple-2 );
-    font-size: 0.85em;
-    font-weight: 600;
-}
-
-.memberList{
-    min-width: 300px;
-    background-color: rgba( 255, 255, 255, 0.6 );
-    -webkit-backdrop-filter: blur( 10px );
-    backdrop-filter: blur( 10px );
-}
-
-.memHead{
+.buttonSpace{
     height: 50px;
 }
 
-.memHead .name{
-    font-size: 0.85em;
-    font-weight: 600;
-    flex: 1;
-}
-
-.membItems-container{
-    flex: 1;
-    overflow: hidden;
-}
-
-.membItems-container .list{
-    overflow: auto;
-    height: 450px;
-}
-
-.member-item{
-    background-color: transparent;
-    font-size: 0.85em;
-    font-weight: 600;
-    color: var( --purple-2 );
-}
-
-.member-item .item-icon{
+.buttonSpace .member{
+    border: none;
     background-color: var( --purple-2 );
     color: #FFFFFF;
-    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.buttonSpace .statistic{
+    border: 2px solid var( --purple-2 );
+    background-color: transparent;
+    color: var( --purple-2 );
+    border-radius: 3px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.spaceHead{
+    height: 50px;
+}
+
+.listSpaceItem{
+    flex: 1;
+}
+
+.spaceSimulationListContent .row{
+    max-width: 100% !important;
+}
+
+.dataSpaceItem{
+    position: absolute;
+    width: 100%;
+    z-index: 200;
+    background-color: rgba( 255, 255, 255, 0.5 );
+    -webkit-backdrop-filter: blur( 6px );
+    backdrop-filter: blur( 6px );
+}
+
+#spaceTitle{
+    font-weight: 600;
+    font-size: 0.9em;
+    flex: 1;
+}
+
+.user{
+    border-radius: 3px;
+    background-color: #FFFFFF;
+}
+
+.user .icon{
+    height: 30px;
+    width: 30px;
+    background-color: var( --purple-2 );
     border-radius: 100%;
+    color: #FFFFFF;
+    font-weight: 900;
+    font-size: 0.85em;
+}
+
+.user .user-data{
+    flex: 1;
+}
+
+.user .user-data div{
+    flex: 1;
+}
+
+.user .user-name{
+    font-size: 0.8em;
+    color: #000000;
+    font-weight: 900;
+}
+
+.user button:hover,
+.user button:focus,
+.user button{
+    background-color: var( --purple-2 );
+    color: #FFFFFF;
+    font-size: 0.65em;
+    font-weight: 600;
+    box-shadow: none;
 }
 
 .api-text{
@@ -226,6 +255,72 @@
 .dataSpace{
     height: 60px;
     border-top: 1px solid #DDDDDD;
+}
+
+.dataSpaceItem{
+    border-left: 2px solid #EEEEEE !important;
+}
+
+.data-title{
+    display: inline-block;
+    color: #000000;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.data-val{
+    display: inline-block;
+    font-size: 0.85em;
+}
+
+.progression{
+    display: block;
+    width: 85%;
+    border: 1px solid var( --purple-2 );
+    height: 20px;
+    background-color: #FFFFFF;
+}
+
+.win{
+    width: 80%;
+}
+
+.taux{
+    width: 45%;
+}
+
+.indice{
+    width: 2%;
+}
+
+.progression .progression-bar{
+    position: absolute;
+    height: 100%;
+    width: attr( data-val );
+    font-size: 0.85em;
+    color: #FFFFFF;
+    background-color: var( --purple-2 );
+    text-align: center;
+}
+
+.addSimulation{
+    width: 25px;
+    height: 25px;
+    background-color: var( --purple-2 );
+    border-radius: 100%;
+}
+
+.addSimulation .items{
+    display: block;
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.addSimulation .item1{
+    transform: rotate( 90deg );
 }
 
 .move{
@@ -508,7 +603,9 @@
 }
 
 .simulation-card .openClassButton:hover,
+.simulation-card .openClassButton:focus,
 .simulation-card .openClassButton,
+.simulation-card .startSimulationButton:focus,
 .simulation-card .startSimulationButton:hover,
 .simulation-card .startSimulationButton{
     font-size: 0.85em;
@@ -517,6 +614,7 @@
     border-width: 2px;
     font-weight: bold;
     border-radius: 3px !important;
+    box-shadow: none;
 }
 
 .simulation-card .showSimulationButton:hover,
@@ -708,6 +806,10 @@
 }
 
 @media screen and ( min-width: 576px ) {
+    .dataSpaceItem{
+        max-width: 350px;
+    }
+
     .for-training{
         transform: scale( 0.99 );
         transition: transform 0.3s;
@@ -759,6 +861,12 @@
     .currentItem{
         width: 55px;
         height: 55px;
+    }
+}
+
+@media screen and ( min-width: 776px ) {
+    .dataSpaceItem{
+        position: relative;
     }
 }
 
