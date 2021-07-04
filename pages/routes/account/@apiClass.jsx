@@ -16,7 +16,7 @@ export default function Api () {
                     <div className="contentSpace d-flex flex-column flex-md-row-reverse overflow-hidden">
                         <div className="contentSpaceItem d-none flex-column dataSpaceItem memberSpace h-100 overflow-hidden">
                             <div className="spaceHead d-flex justify-content-center flex-row-reverse align-items-center">
-                                <div className="d-block text-center" id="spaceTitle"> Membre de la classe </div>
+                                <div className="d-block text-center spaceTitle"> Membre de la classe </div>
                                 <div className="_icon d-flex justify-content-center align-items-center" id="close-member">
                                     <div className="items item1"></div>
                                     <div className="items item2"></div>
@@ -47,7 +47,7 @@ export default function Api () {
                         </div>
                         <div className="contentSpaceItem d-flex flex-column dataSpaceItem statSpace h-100 overflow-hidden">
                             <div className="spaceHead d-flex justify-content-center flex-row-reverse align-items-center">
-                                <div className="d-block text-center" id="spaceTitle"> Statistiques </div>
+                                <div className="d-block text-center spaceTitle"> Statistiques </div>
                                 <div className="_icon d-flex justify-content-center align-items-center" id="close-stat">
                                     <div className="items item1"></div>
                                     <div className="items item2"></div>
@@ -77,6 +77,20 @@ export default function Api () {
                                             <span className="progression-bar indice"> 2% </span>
                                         </span>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="contentSpaceItem d-flex flex-column dataSpaceItem addSpace h-100 overflow-hidden">
+                            <div className="spaceHead d-flex justify-content-center flex-row-reverse align-items-center">
+                                <div className="d-block text-center spaceTitle"> Ajouter une simulation </div>
+                                <div className="_icon d-flex justify-content-center align-items-center" id="close-add">
+                                    <div className="items item1"></div>
+                                    <div className="items item2"></div>
+                                </div>
+                            </div>
+                            <div className="spaceList d-block h-100 overflow-auto">
+                                <div className="spaceListContent p-2 d-block" id="contentSimulationToAdd">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -122,7 +136,7 @@ export default function Api () {
                         </div>
                     </div>
                     <div className="buttonSpace d-flex justify-content-end align-items-center pr-3 border-top">
-                        <div className="addSimulation d-flex justify-content-center align-items-center mr-3">
+                        <div className="addSimulation d-flex justify-content-center align-items-center mr-3 shadow" id="addSimulation">
                             <div className="items item1"></div>
                             <div className="items item2"></div>
                         </div>

@@ -151,7 +151,7 @@
     backdrop-filter: blur( 6px );
 }
 
-#spaceTitle{
+.spaceTitle{
     font-weight: 600;
     font-size: 0.9em;
     flex: 1;
@@ -304,10 +304,12 @@
 }
 
 .addSimulation{
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     background-color: var( --purple-2 );
     border-radius: 100%;
+    cursor: pointer;
+    border: 5px solid #FFFFFF;
 }
 
 .addSimulation .items{
@@ -583,6 +585,7 @@
 .simulation-card:hover,
 .simulation-card{
     border-top: 3px solid var( --purple-2 ) !important;
+    background-color: #FFFFFF;
 }
 
 .simulation-card .card-head{

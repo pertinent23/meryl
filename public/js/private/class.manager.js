@@ -9,18 +9,21 @@ function hide( obj ) {
 const Tools = {
     class: null,
     icon: null,
+    closeAddButton: null,
     closeClassButton: null,
     closeStatButton: null,
     closeMemberButton: null,
     stat: null,
     member: null,
     effectif: null,
+    add: null,
     win: null,
     taux: null,
     indice: null,
     classNameField: null,
     memberButton: null,
     statButton: null,
+    addButton: null,
     closeClass() {
         return hide( this.class );
     },
@@ -35,9 +38,23 @@ const Tools = {
             this.statButton.click( function () {
                 return obj.openStat();
             } );
+            this.addButton.click( function () {
+                return obj.openAdd();
+            } );
         return this.closeClassButton.click( function () {
             return obj.closeClass();
         } );
+    },
+    openAdd() {
+        this.closeMember();
+            this.closeStat();
+                this.closeAddButton.click( function () {
+                    return Tools.closeAdd();
+                } );
+        return show( this.add );
+    },
+    closeAdd() {
+        return hide( this.add );
     },
     closeMember() {
         return hide( this.member );
@@ -50,16 +67,18 @@ const Tools = {
     },
     openMember( ) {
         this.closeStat();
-        this.closeMemberButton.click( function () {
-            return Tools.closeMember();
-        } );
+            this.closeAdd();
+                this.closeMemberButton.click( function () {
+                    return Tools.closeMember();
+                } );
         return show( this.member );
     },
     openStat() {
         this.closeMember();
-        this.closeStatButton.click( function () {
-            return Tools.closeStat();
-        } );
+            this.closeAdd();
+                this.closeStatButton.click( function () {
+                    return Tools.closeStat();
+                } );
         return show( this.stat );
     },
     setClassName( name = '' ) {
@@ -95,7 +114,10 @@ Digital( function ( $ ) {
                 memberButton: $( '#openMember' ),
                 statButton: $( '#openStat' ),
                 closeStatButton: $( '#close-stat' ),
-                closeMemberButton: $( '#close-member' )
+                closeMemberButton: $( '#close-member' ),
+                addButton: $( '#addSimulation' ),
+                closeAddButton: $( '#close-add' ),
+                add: $( '.addSpace' )
             } );
         $( '.user-action' ).each( function ( index ) {
             return $( this ).click( function () {

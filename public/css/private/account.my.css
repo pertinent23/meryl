@@ -1,0 +1,28 @@
+.myIcon{
+    background-color: var( --purple-2 );
+    color: #FFFFFF;
+    font-size: 1.3em;
+    font-weight: 900;
+    padding: 15px 23px;
+}
+
+.label{
+    font-size: 1.3em;
+    font-weight: 900;
+    color: #000000;
+}
+
+.data{
+    font-weight: 1.2em;
+    color: var( --purple-2 );
+    min-width: 100px;
+}
+
+.modify:hover,
+.modify{
+    background-color: var( --purple-2 );
+    color: #FFFFFF;
+    font-size: 0.85em;
+    font-weight: 600;
+    box-shadow: none;
+}

@@ -19,8 +19,10 @@ export default function AccountHome () {
                             <div className="col">
                                 <div className="row">
                                     <div className="col d-flex justify-content-center align-items-center p-3">
-                                        <div className="card items border-0 py-3 pt-4 shadow">
-                                            <img src="/img/private/img5.svg" alt="icon" className="card-img-top"/>
+                                        <div className="card items border-0 p-0 pb-3 shadow">
+                                            <div className="content-img d-block">
+                                                <img src="/img/home/simulation.jpeg" alt="icon" className="card-img-top"/>
+                                            </div>
                                             <div className="card-body">
                                                 <span className="card-title py-2 px-3 my-4 d-inline-block"> Simalation </span>
                                                 <p className="card-text pb-3 px-4">
@@ -34,8 +36,10 @@ export default function AccountHome () {
                                         </div>
                                     </div>
                                     <div className="col d-flex justify-content-center align-items-center p-3">
-                                        <div className="card items border-0 py-3 pt-4 shadow">
-                                            <img src="/img/private/img2.svg" alt="icon" className="card-img-top"/>
+                                        <div className="card items border-0 p-0 pb-3 shadow">
+                                            <div className="content-img d-block">
+                                                <img src="/img/home/class.jpeg" alt="icon" className="card-img-top"/>
+                                            </div>
                                             <div className="card-body">
                                                 <span className="card-title py-2 px-3 my-3 d-inline-block"> Classe </span>
                                                 <p className="card-text pb-3 px-4">
@@ -53,8 +57,10 @@ export default function AccountHome () {
                             <div className="col">
                                 <div className="row">
                                     <div className="col d-flex justify-content-center align-items-center p-3">
-                                        <div className="card items border-0 py-3 pt-4 shadow">
-                                            <img src="/img/private/img9.svg" alt="icon" className="card-img-top"/>
+                                        <div className="card items border-0 p-0 pb-3 shadow">
+                                            <div className="content-img d-block">
+                                                <img src="/img/home/training.jpeg" alt="icon" className="card-img-top"/>
+                                            </div>
                                             <div className="card-body">
                                                 <span className="card-title py-2 px-3 my-4 d-inline-block"> Entrainement </span>
                                                 <p className="card-text pb-3 px-4">
@@ -67,15 +73,17 @@ export default function AccountHome () {
                                         </div>
                                     </div>
                                     <div className="col d-flex justify-content-center align-items-center p-3">
-                                        <div className="card items border-0 py-3 pt-4 shadow">
-                                            <img src="/img/private/img11.svg" alt="icon" className="card-img-top"/>
+                                        <div className="card items border-0 p-0 pb-3 shadow">
+                                            <div className="content-img d-block">
+                                                <img src="/img/home/account.jpeg" alt="icon" className="card-img-top"/>
+                                            </div>
                                             <div className="card-body">
                                                 <span className="card-title py-2 px-3 my-4 d-inline-block"> Mon compte </span>
                                                 <p className="card-text pb-3 px-4">
                                                     Modifier les informations de votre compte, ( nom, prénom, .... ).
                                                 </p>
                                                 <div className="container-fluid d-flex justify-content-end">
-                                                    <a href="/routes/account/simulation/my" className="btn btn-outline px-4 py-1"> Aller </a>
+                                                    <a href="/routes/account/my" className="btn btn-outline px-4 py-1"> Aller </a>
                                                 </div>
                                             </div>
                                         </div>

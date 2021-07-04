@@ -6,7 +6,7 @@ export default function Connection () {
     return (
         <Fragment>
             <Head>
-                <link rel="stylesheet" href="/css/private/connection.css"/>
+                <link rel="stylesheet" href="/css/private/form.css"/>
             </Head>
             <div className="container-fuid d-flex flex-column box-container justify-content-center align-items-center px-0">
                 <div className="box d-flex justify-content-center p-0 m-0 border-0">
@@ -23,8 +23,8 @@ export default function Connection () {
                                 <span className="box-title-lower"> Maintenant </span>
                             </div>
                             <div className="content-input d-flex flex-column align-items-center justify-content-center py-3">
-                                <input type="email" placeholder="Email: " name="email" id="email" className="d-block box-button rounded pl-3"/>
-                                <input type="password" placeholder="Mot de passe: " name="password" id="password" className="d-block box-button rounded mt-5 pl-3"/>
+                                <input type="email" placeholder="Email: " name="email" id="email" className="d-block shadow box-button rounded pl-3"/>
+                                <input type="password" placeholder="Mot de passe: " name="password" id="password" className="d-block shadow box-button rounded mt-5 pl-3"/>
                             </div>
                             <div className="content-buttons d-flex justify-content-end pr-4 px-4 pt-4">
                                 <a href="/routes/account"><input type="button" value="Connection" className="button-type-1 button mr-4" id="submit"/></a>
