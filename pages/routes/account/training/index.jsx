@@ -17,6 +17,7 @@ export default function Training () {
                     description={ 'Exercez-vous avec des simulations créées par des professeurs, les resultats de ces simulations ne seront pas pris en compte quelque soit l issue.' }
                     href={ "#" }
                     show={ false }
+                    img={ '/img/home/training.jpeg' }
                 />
                 <div className="container-fluid py-3">
                     <div className="row training-row">

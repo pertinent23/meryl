@@ -16,10 +16,11 @@ export default function MyAccount () {
                     title={ 'Bienvenue dans gestion du compte !! ' }
                     description={ 'Modifier votre compte et vos informations personnelles.' }
                     show={ false }
+                    img={ '/img/home/account.jpg' }
                 />
                 <div className="container py-3">
                     <div className="py-2 text-center">
-                        <div className="myIcon d-inline-block rounded-circle"> N </div>
+                        <div className="myIcon d-inline-block rounded-circle my-3"> N </div>
                     </div>
                     <div className="py-5">
                         <div className="py-3 d-flex justify-content-center align-items-center" contentEditable="false">

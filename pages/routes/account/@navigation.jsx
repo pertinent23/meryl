@@ -43,10 +43,13 @@ const generate = function ( page ) {
     return result;
 };
 
-export default function Navigation( { page, title, description, href, onClick, show } ) {
+export default function Navigation( { page, title, description, href, onClick, show, img } ) {
     return (
         <Fragment>
-            <div className="container-fluid content-navbar px-0 pt-3 bg-danger mt-0">
+            <div 
+                className="container-fluid content-navbar px-0 pt-3 bg-danger mt-0" 
+                style={{ backgroundImage: img ? `url(${img})` : `url( "/img/private/server2.jpg" )` }}
+            >
                 <div className="navbar navbar-expand-md container-fluid d-flex py-3 px-0 py-md-0" id="navbar">
                     <a href="#" className="nav-brand ml-3 px-3 px-md-4 d-md-none"> Menu </a>
                     <div className="d-flex d-md-none flex-column justify-content-center align-items-center rounded navbar-toggler mr-3" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" id="menu-button">
@@ -74,7 +77,7 @@ export default function Navigation( { page, title, description, href, onClick, s
                                 //Empty fonction
                             } }> 
                                 Commencer 
-                        </a> : ''
+                        </a> : <div className="mb-5 pb-5"></div>
                     }
                 </div>
             </div>

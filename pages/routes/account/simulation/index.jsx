@@ -18,6 +18,7 @@ export default function Simulation () {
                     description={ 'Créer des simulations, travailler avec des simulations que vous avez déjà créées ou archivées et partager lès.' }
                     href={ "#" }
                     show={ false }
+                    img={ '/img/home/simulation.jpeg' }
                 />
                 <div className="container-fluid py-3 px-0 px-sm-2">
                     <div className="row">

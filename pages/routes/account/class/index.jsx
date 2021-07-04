@@ -18,6 +18,7 @@ export default function Class () {
                     description={ 'Créer des classes, pour partager vos travaux avec les participants et évaluer leur niveaux.' }
                     href={ "#" }
                     show={ false }
+                    img={ '/img/home/class.jpeg' }
                 />
                 <div className="container-fluid py-3 px-0 px-sm-2">
                     <div className="row">
