@@ -75,7 +75,7 @@ export default function AccountHome () {
                                     <div className="col d-flex justify-content-center align-items-center p-3">
                                         <div className="card items border-0 p-0 pb-3 shadow">
                                             <div className="content-img d-block">
-                                                <img src="/img/home/account.jpeg" alt="icon" className="card-img-top"/>
+                                                <img src="/img/home/account.jpg" alt="icon" className="card-img-top"/>
                                             </div>
                                             <div className="card-body">
                                                 <span className="card-title py-2 px-3 my-4 d-inline-block"> Mon compte </span>

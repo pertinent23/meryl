@@ -7,7 +7,7 @@
 .content-items .items{
     max-width: 350px;
     min-width: 250px;
-    border-top: 3px solid var( --blue-1 ) !important;
+    border-top: 3px solid #3D489F !important;
 }
 
 .items .content-img::after{
