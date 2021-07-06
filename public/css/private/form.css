@@ -89,6 +89,11 @@
     color: var( --blue-1 );
 }
 
+#form-error{
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
 @media screen and ( min-width: 992px ) {
     .box{
         position: fixed;

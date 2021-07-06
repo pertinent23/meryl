@@ -1,10 +1,10 @@
-const current = { context: 1, mode: 2, pile: [] };
+let map = {};
+const current = { context: 1, mode: 2, pile: [], main: {}, nodes: [] };
 /**
     * the mode 1 to do a simulation
     * the mode 2 to first create a simulation
     * the mode 3 to se a simulation 
 */
-const map = {};
 const NameMap = {
     computer: 'Ordinateur',
     router: 'Routeur',
@@ -82,6 +82,7 @@ const fx = {
                         const clone = node.clone();
                             clone.css( { position: 'relative', left: '0px', top: '0px' } );
                                 utils.dropZone.append( clone );
+                                    current.nodes.push( clone );
                                     initEvent( utils.dropZone, events.drop, e.detail );
                             node.remove();
                         return clone;
@@ -105,7 +106,9 @@ const fx = {
                         activeDragEvent( node, function () {
                             utils.detected = true;
                             utils.down = true;
-                        }, function () {
+                            try{ 
+                                return final.shift().call( {} ); 
+                            } catch( e ) {}              }, function () {
                             const { x, y } = utils.data;
                                 if ( !utils.dropZoneVerifier( x, y ) ) {
                                         obj.removeAll();
@@ -607,9 +610,12 @@ const InterfaceManager = {
         } );
     },
     openApi() {
+        map = {};
         utils.show( this.components.api );
         window.scrollTo( 0, 0 );
         $( $.body() ).css( { overflow: 'hidden' } );
+        Simulation.clean();
+        utils.hide( InterfaceManager.components.saveButton );
         return this.components.closeApi.on( {
             click: function () {
                 return InterfaceManager.closeApi();
@@ -618,11 +624,19 @@ const InterfaceManager = {
     },
     closeApi() {
         $( $.body() ).css( { overflow: 'auto' } );
+        for( const item of current.nodes ){
+            try{
+                item.remove();
+            } catch( e ) {}
+        }
+
         for( const node of fx.nodeList ) {
             try{
                 node.remove();
             } catch( e ) {}
         }
+
+        current.nodes = [];
         fx.nodeList = [ ];
         Simulation.clean();
         return utils.hide( 
@@ -762,7 +776,26 @@ const InterfaceManager = {
                         /** 
                             * We have to send
                             * Data to the server 
+                            * 
+                            * If we have to compare two
+                            * simulation 
+                            * 
                         */
+                        const count = {};
+                            for( let key in map )
+                                count[ key ] = map[ key ].count;
+                        const data = Simulation.compare( current.main, 
+                            Simulation.saveNetWork(),
+                            count
+                        );
+                        
+                        /** 
+                            * 
+                            * Now we can send
+                            * data to the serve  
+                            * 
+                        */
+                        console.log( data );
                     } else {
                         const data = Simulation.saveNetWork();
                         return $.setStorage( 'save', JSON.stringify(
@@ -770,26 +803,24 @@ const InterfaceManager = {
                         ) );
                     }
                 } );
-        return button.on( {
-            click() {
-                const myState = button.attr( 'data-btn' );
-                    if ( myState == state.begin ) {
-                        obj.interface_2();
+        return button.click( function( ) {
+            const myState = button.attr( 'data-btn' );
+                if ( myState == state.begin ) {
+                    return obj.interface_2();
+                } else {
+                    if ( myState == state.first ) {
+                        return obj.interface_3();
                     } else {
-                        if ( myState == state.first ) {
-                            obj.interface_3();
-                        } else {
-                            if ( myState == state.second ) {
-                                Simulation.verify();
-                                if ( Simulation.errors.length === 0 && current.mode != 3 )
-                                    utils.show( saveButton );
-                                else if ( current.mode != 3 )
-                                    return obj.finalyseError( Simulation.errors );
-                            }
+                        if ( myState == state.second ) {
+                            Simulation.verify();
+                            if ( Simulation.errors.length === 0 && current.mode != 3 )
+                                utils.show( saveButton );
+                            else if ( current.mode != 3 )
+                                return obj.finalyseError( Simulation.errors );
                         }
                     }
-                return myState;
-            }
+                }
+            return myState;
         } );
     },
     openInterFace( param_1, param_2 ) {
@@ -813,6 +844,8 @@ const InterfaceManager = {
                     for( let key in map )
                         delete map[ key ];
                         this.init();
+                    current.main = param_1;
+                    current.mode = 2;
                     this.interface_1();
                     this.setApiName( data.name );
                 return this.openApi();

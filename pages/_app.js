@@ -2,6 +2,10 @@ import Root from "./routes/@root";
 import App from "next/app";
 import { Fragment, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Axios from 'axios';
+
+Axios.defaults.baseURL = "https://networkschool-api-2021.herokuapp.com";
+Axios.defaults.withCredentials = true;
 
 function MyApp( { Component, pageProps } ) {
     const 

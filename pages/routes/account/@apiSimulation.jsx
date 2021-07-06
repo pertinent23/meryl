@@ -52,7 +52,7 @@ export default function Api () {
                                     <div className="descriptionSpace p-3">
                                         Choisir chaque élement que vous aurez besoin
                                         pour votre simulation, le nombre de fois que vous
-                                        en aurez besoin.
+                                        en aurez besoin de lui.
                                     </div>
                                     <div className="contentSelectionSpace d-flex justify-content-center align-items-center">
                                         <div className="selectionSpace firstSelectionSpace shadow d-flex justify-content-center align-items-center rounded" id="selectionSpace">

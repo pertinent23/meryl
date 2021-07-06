@@ -27,7 +27,7 @@ Digital( function ( $ ) {
         descriptionField = $( '#simulation-description' ),
         errorField = $( '#simulation-creation-error' ),
         creationButton = $( '#create-simulation' );
-    return creationButton.click( function () {
+    return creationButton.on( 'click', function () {
         const 
             name = nameField.value(),
             description = descriptionField.value();

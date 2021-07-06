@@ -27,9 +27,10 @@ export default function Inscription () {
                                 <input type="text" name="name" id="name" placeholder="Nom & Prenom" className="shadow d-block box-button rounded mt-4 pl-3"/>
                                 <input type="password" placeholder="Mot de passe: " name="password" id="password" className="shadow d-block box-button rounded mt-4 pl-3"/>
                             </div>
+                            <div className="container text-danger text-center" id="form-error"></div>
                             <div className="content-buttons d-flex justify-content-end pr-4 px-4 pt-4">
-                                <a href="/routes/account"><input type="button" value="Je m'inscrit" className="button-type-1 button mr-4" id="submit"/></a>
-                                <a href="/routes/connection"><input type="button" value="Connection" className="button-type-2 button" id="second"/></a>
+                                <input type="button" value="Je m'inscrit" className="button-type-1 button mr-4" id="submit" data-url="/routes/account"/>
+                                <input type="button" value="Connection" className="button-type-2 button" id="second" data-url="/routes/connection"/>
                             </div>
                         </div>
                     </div>
@@ -38,3 +39,8 @@ export default function Inscription () {
         </Fragment>
     );
 };
+
+Inscription.scripts = [
+    '/js/private/inscription.js',
+    '/js/form.js'
+];

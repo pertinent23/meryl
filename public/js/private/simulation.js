@@ -16,6 +16,11 @@ const Simulation = {
         height: 40
     },
     clean() {
+        for( let key in this.devices ) {
+            const obj = this.devices[ key ];
+                obj.removeAll();
+        }
+        PaquetObject.clean();
         return Digital.update( this, {
             focused: 0,
             name: ' ',
@@ -23,6 +28,7 @@ const Simulation = {
             errors: [],
             cables: { },
             devices: {},
+            map: {},
             id: 0
         } );
     },
@@ -106,6 +112,20 @@ const Simulation = {
         }
     },
     verify() {
+        const 
+            final = [],
+            addFinal = function ( delay, item, subitem ) {
+                return final.push( function () {
+                    return setTimeout( function () {
+                        if ( !item.removed && !subitem.removed && !this.current ) {
+                            item.sendTo( subitem.getId() );
+                            try{ 
+                                return final.shift().call( {} ); 
+                            } catch( e ) {}
+                        }
+                    }, delay );
+                } );
+            };
         Simulation.errors = [];
             for( let item in Simulation.map ) {
                 const device = Simulation.map[ item ];
@@ -128,14 +148,15 @@ const Simulation = {
                                 const subitem = Simulation.map[ subkey ];
                                 if ( subitem instanceof Linker || subitem.isSame( item ) )
                                     continue;
-                                        setTimeout( function () {
-                                            return item.sendTo( subitem.getId() );
-                                        }, delay );
+                                        addFinal( delay, item, subitem );
                                 delay += 300;
                             }
                     delay += 50;
                 }
             }
+            try{ 
+                final.shift().call( {} ); 
+            } catch( e ) {}
         return Simulation.errors;
     },
     reportError( obj, error ) {
@@ -235,6 +256,91 @@ const Simulation = {
                 result.name = Simulation.name;
                 result.description = Simulation.description;
         return result;
+    },
+    getTree( sim ) {
+        const 
+            list = [],
+            map = sim.map;
+            for( let key in map ) {
+                const 
+                    part = {},
+                    name = map[ key ].type;
+                        part[ name ] = [];
+                    for( const item of map[ key ].connection ) {
+                        if ( map[ item ] )
+                            part[ name ].push( map[ item ].type );
+                    }
+                list.push( part );
+            }
+        return list;
+    },
+    linear( obj ) {
+        let result = '';
+            for( let key in obj )
+                result += key + obj[ key ].sort().toString();
+        return result.toLowerCase();
+    },
+    compareObject( obj1, obj2 ) {
+        const 
+            l1 = this.linear( obj1 ),
+            l2 = this.linear( obj2 );
+        return l1 === l2;
+    },
+    getResult( fthree, length, rObj, given ) {
+        let npart1, npart2, count1 = 0, count2 = 0;
+        const result = {
+            average: 0,
+            note: ''
+        };
+
+        for( let key in given ) {
+            const option = given[ key ];
+                if ( key.toUpperCase() in rObj ) {
+                    count1++;
+                    option === rObj[ key.toUpperCase() ] ? count2++ : '';
+                } else
+                    count2--;
+        }
+
+        /** 
+            * we have to give the first
+            * note on twenty 
+        */
+        npart1 = Math.round( count2 <= 0 ? 0 : ( 45 / count1 ) * count2 );
+        count1 = length;
+        count2 = 0;
+            count2 -= Math.abs( fthree.length - length );
+                for ( let i = 0; i < fthree.length; i++ )
+                    !fthree[ i ] ? count2++ : '';
+                npart2 = Math.round( count2 <= 0 ? 0 : ( 55 / count1 ) * count2 );
+                result.average = ( npart1 + npart2 ) / 5;
+            result.note = count2 === count1 ? 'Objectif Atteint' : 'Objectif manqué';
+        return result;
+    },
+    compare( sim1, sim2, count ) {
+        console.log( sim1, sim2 );
+        let part1, part2;
+        const 
+            realCount = {},
+            three1 = this.getTree( sim1 ),
+            three2 = this.getTree( sim2 );
+                for( let key in sim1.map ) {
+                    const item = sim1.map[ key ].type;
+                        if ( item in realCount )
+                            realCount[ item ]++;
+                        else realCount[ item ] = 1;
+                } 
+            for ( let i = 0; i < three1.length; i++ ) {
+                part1 = three1[ i ];
+                for ( let j = 0; j < three2.length; j++) {
+                    part2 = three2[ j ];
+                    if ( this.compareObject( part1, part2 ) ) {
+                            delete three2[ j ];
+                        break;
+                    }
+                }
+            }
+        return this.getResult( three2, three1.length, realCount, count );
     }
 };
 
@@ -296,6 +402,7 @@ class Components{
                         return this;
                     }
                 } );
+                node.attr( 'data-part-toolip', `${ Simulation.utils.name( this.getType().toLowerCase() ) } : ${this.getId()}` );
                     node.on( {
                         contextmenu( e ) {
                             if ( obj instanceof Linker )
@@ -452,6 +559,7 @@ class Components{
             this.getNode().remove();
         } catch ( e ) { }
             this.remove();
+        this.removed = true;
         Simulation.remove( this );
     }
 
@@ -487,8 +595,11 @@ class Components{
                         return this.sendPaquet( myPaquet );
                     } else {
                         if( this instanceof Cable ) {
-                            if ( this.removed )
-                                return this;
+                            if ( this.removed ) {
+                                try{
+                                    paquet.remove();
+                                } catch( e ) {}
+                            }
                                     for( const item of this.ports ) {
                                         const obj = this;
                                         if ( !item.isSame( entry ) && !paquet.inWay( item ) )
@@ -508,14 +619,16 @@ class Components{
                     if ( paquet.isDestination( this ) ) {
                         return this.receive( paquet );
                     } else {
-                        const focused = paquet.merge().getFocused();
-                            for( const item of this.ports ) {
-                                if ( item.isSame( focused ) )
-                                    return item.turnel( paquet.setEntry( this ) );
-                            }
+                        if ( this.removed )
+                            return paquet.remove();
+                                const focused = paquet.merge().getFocused();
+                                    for( const item of this.ports ) {
+                                        if ( item.isSame( focused ) )
+                                            return item.turnel( paquet.setEntry( this ) );
+                                    }
                     }
                 } else if ( paquet.request === 'verify' ) {
-                    if ( !paquet.inWay( this ) ) {
+                    if ( !paquet.inWay( this ) && !this.removed ) {
                         if ( paquet.getWay().length != 0 || !( this instanceof Connector ) ) {
                             paquet.add( this );
                             for ( const device of this.ports ) {
@@ -530,6 +643,8 @@ class Components{
                 if ( paquet.isDestination( this ) ) {
                     return this.receive( paquet );
                 } else {
+                    if ( this.removed )
+                        return paquet.remove();
                     const focused = paquet.merge().getFocused();
                         for( const item of this.ports ) {
                             if ( item.isSame( focused ) ) {
@@ -858,6 +973,7 @@ class PaquetRequest extends Paquet{
 
 class PaquetObject extends Paquet{
     node = '';
+    removed = false;
     focused = null;
     path = [];
 
@@ -865,6 +981,7 @@ class PaquetObject extends Paquet{
         super( headers, node );
         this.path = path;
         this.load();
+        PaquetObject.listPaquet.push( this );
     }
 
     load() {
@@ -883,6 +1000,8 @@ class PaquetObject extends Paquet{
 
     async move( { x1, y1, x2, y2 }, then ) {
         let finish = false;
+        if( this.removed )
+            return this;
         const 
             mx = this.node.offsetWidth() / 2,
             my = this.node.offsetHeight() / 2,
@@ -932,8 +1051,18 @@ class PaquetObject extends Paquet{
     }
 
     remove() {
-        return this.node.remove();
+        this.removed = true;
+        try{
+            return this.node.remove();
+        } catch( e ) { }
     }
+}
+
+PaquetObject.listPaquet = [ ];
+PaquetObject.clean = function () {
+    for( const item of PaquetObject.listPaquet )
+        item.remove();
+    return this;
 }
 
 class Computer extends Components{

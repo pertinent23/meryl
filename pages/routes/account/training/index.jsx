@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { Fragment } from 'react';
 import Navigation from './../@navigation';
+import ApiSimulation from './../@apiSimulation';
 
 export const page = 'account.training';
 export default function Training () {
@@ -84,6 +85,7 @@ export default function Training () {
                     </div>
                 </div>
             </div>
+            <ApiSimulation />
         </Fragment>
     );
 };
