@@ -45,7 +45,9 @@ const Tools = {
     },
     addSimulation( simList ) {
         let both = [];
+        ClassList.main.simList = simList;
         const parent = $( '.spaceSimulationListContent' );
+            parent.empty();
             for ( const sim of simList ) {
                 const 
                     node = $( {
@@ -62,11 +64,20 @@ const Tools = {
                     both = [];
                 }
             }
-            const 
-                row = $( { el: 'div', class: 'row' } );
-                row.append( both );
-            parent.append( row );
-        return row;
+            if( simList.length === 0 )
+                parent.append( {
+                    el: 'div',
+                    class: 'py-5 text-center',
+                    content: 'Aucune simulation pour le moment.'
+                } );
+            else {
+                const 
+                    row = $( { el: 'div', class: 'row' } );
+                        row.append( both );
+                        row.append( { el: 'div', class: 'col-12 col-md-6' } );
+                parent.append( row );
+            }
+        return this;
     },
     createUser( data ) {
         const 
@@ -103,7 +114,7 @@ const Tools = {
 
             node.append( userData );
             button.click( function () {
-                console.log( 'delete' );
+                console.log( 'delete' ); 
             } );
         return node;
     },

@@ -582,7 +582,7 @@ function addSimulation( node, sim ) {
 };
 
 function createSimulation( data, mode ) {
-    const sim = mode === 1 ? data : data.content;
+    const sim = !( 'id' in data ) ? data : data.content;
     utils.activeSimualtion = sim;
     const 
         node = $( {
@@ -622,17 +622,39 @@ function createSimulation( data, mode ) {
         content: ''
     } );
 
-    if ( mode === 1 || mode === 2 ) 
+    if ( mode === 1 || mode === 2 || ( ClassList.main && ClassList.main.isAdmin && mode != 4 ) ) 
         buttons.append( view );
     
     view.click( function () {
         InterfaceManager.openInterFace( sim, true );
     } );
 
+    Start.click( function () {
+        InterfaceManager.openInterFace( sim, false );
+    } );
+
+    if ( mode === 5 || ( ClassList.main && !ClassList.main.isAdmin ) )
+        buttons.append( Start );
+
     if ( mode === 4 ){
         buttons.append( Start );
         Start.text( 'Poster' ).click( function () {
-            console.log( 'posted' );
+            const 
+                url = Axios.getUrl( '/api/class-simulation/' ),
+                user = getUser(),
+                body = {
+                    copied: user.id,
+                    simulation: data.id,
+                    classe: ClassList.main.id
+                };
+                console.log( body );
+            Axios.post( url, body ).then( function ( response ) {
+                console.log( response );
+                ClassList.main.simList.push( sim );
+                    Tools.addSimulation( ClassList.main.simList );
+                    node.remove();
+                return response.json();
+            } );
         } );
     }
 

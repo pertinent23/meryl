@@ -79,6 +79,22 @@ Axios.get = function ( url ) {
     } );
 };
 
+Axios.post = function ( url, body ) {
+    const 
+        path = url;
+        Axios.request = 'post';
+    return fetch( path, {
+        method: Axios.request,
+        mode: 'cors',
+        body: JSON.stringify( body ),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    } ).then( function ( response ) {
+        return response.json();
+    } );
+};
+
 window.showLoader = function () {
     const 
         loader = $( "#loader" ),

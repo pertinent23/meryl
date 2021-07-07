@@ -87,7 +87,7 @@ export default function Api () {
                         </div>
                         <div className="contentSpaceItem d-flex flex-column listSpaceItem overflow-hidden">
                             <div className="spaceSimulationList d-block h-100 overflow-auto">
-                                <div className="spaceSimulationListContent px-2"></div>
+                                <div className="spaceSimulationListContent px-2" style={{ fontWeight: 600, fontSize: '1.1em' }}></div>
                             </div>
                         </div>
                     </div>

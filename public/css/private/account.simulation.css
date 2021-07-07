@@ -148,6 +148,10 @@
     max-width: 100% !important;
 }
 
+.spaceSimulationListContent .simulation-card{
+    font-size: 0.7em;
+}
+
 .dataSpaceItem{
     position: absolute;
     width: 100%;
@@ -845,7 +849,6 @@
 
 #contentSimulationToAdd .simulation-card{
     height: 150px !important;
-    max-height: 150px !important;
     font-size: 0.8em !important;
 }
 
@@ -908,13 +911,13 @@
     }
 }
 
+#contentSimulationToAdd .description{
+    display: none !important;
+}
+
 @media screen and ( min-width: 776px ) {
     .dataSpaceItem{
         position: relative;
-    }
-
-    #contentSimulationToAdd .description{
-        display: none !important;
     }
 }
 
