@@ -59,7 +59,7 @@ function createClass( name, describe, type, token ) {
     .append( {
         el: 'div',
         class: 'description',
-        contenteditable: true,
+        //contenteditable: true,
         content: describe
     } )
     .parent()
