@@ -76,14 +76,14 @@ body {
 .loader .loader-item{
     height: 150px;
     width: 150px;
-    border: 6px solid #3D489F;
+    border: 6px solid var( --purple-2 );
     border-top-color: transparent;
     animation: rotate 1.5s ease-out 0s infinite;
 }
 
 .main-container{
     display: none;
-    border-top: 7px solid var( --purple-2 );
+    border-top: 7px solid #3D489F;
 }
 
 #menu{

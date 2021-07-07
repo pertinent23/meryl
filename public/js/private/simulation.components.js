@@ -653,7 +653,7 @@ function createSimulation( data, mode ) {
                 ClassList.main.simList.push( sim );
                     Tools.addSimulation( ClassList.main.simList );
                     node.remove();
-                return response.json();
+                return response;
             } );
         } );
     }

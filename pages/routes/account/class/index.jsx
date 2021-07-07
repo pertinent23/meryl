@@ -138,5 +138,6 @@ export default function Class () {
 };
 
 Class.scripts = [
-    '/js/extends/class.getter.js'
+    '/js/extends/class.getter.js',
+    '/js/style.js'
 ];

@@ -89,3 +89,7 @@ export default function Training () {
         </Fragment>
     );
 };
+
+Training.scripts = [
+    '/js/style.js'
+]; 

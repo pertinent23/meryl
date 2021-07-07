@@ -114,5 +114,6 @@ export default function Simulation () {
 };
 
 Simulation.scripts = [
-    '/js/extends/sim.getter.js'
+    '/js/extends/sim.getter.js',
+    '/js/style.js'
 ];
