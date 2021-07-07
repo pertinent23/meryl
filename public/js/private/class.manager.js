@@ -6,6 +6,12 @@ function hide( obj ) {
     return obj.replaceClass( 'd-flex', 'd-none' );
 }
 
+const ClassList = {
+    created: [],
+    added: [],
+    main: null
+};
+
 const Tools = {
     class: null,
     icon: null,
@@ -27,9 +33,10 @@ const Tools = {
     closeClass() {
         return hide( this.class );
     },
-    openClass( name, desc ) {
+    openClass( name ) {
         const 
-            obj = this;
+            obj = this,
+            token = ClassList.main;
                     this.setClassName( name );
                 show( this.class );
                     this.memberButton.click( function () {
@@ -128,6 +135,77 @@ Digital( function ( $ ) {
         const 
             name = nameField.value(),
             description = descriptionField.value();
-        return Tools.open( name, description );
+            if( !name || !description )
+                return;
+            showLoader();
+            const 
+                path = Axios.getUrl( '/api/classe/' ),
+                user = getUser();
+                Axios.request = 'post';
+            fetch( path, {
+                method: Axios.request.toLocaleLowerCase(),
+                mode: 'cors',
+                body: JSON.stringify( {
+                    describe: description,
+                    name: name,
+                    user: user.id
+                } ),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            } ).then( function ( response ) {
+                return response.json();
+            } ).then( function ( response ) {
+                console.log( response );
+                ClassList.created.push( response );
+                    emptyCreatedList();
+                        createAllClass();
+                    hideLoader();
+                    ClassList.main = response;
+                return Tools.open( name, description );
+            } ).catch( function () {
+                hideLoader();
+            } );
+    } );
+} );
+
+Digital( function ( $ ) {
+    const
+        idField = $( '#class-id' ),
+        passwordField = $( '#class-password' );
+    return $( '#addUserInClass' ).click( function () {
+        const 
+            id = idField.value(),
+            password = passwordField.value();
+        if ( id ) {
+            showLoader();
+            const 
+                path = Axios.getUrl( '/api/login-classe/' ),
+                user = getUser(),
+                token = getToken(),
+                auth = 'Bearer '.concat( token.access_token );
+                Axios.request = 'post';
+            fetch( path, {
+                method: Axios.request.toLocaleLowerCase(),
+                mode: 'cors',
+                body: JSON.stringify( {
+                    user: user.id,
+                    class: parseInt( id ),
+                    password: password
+                } ),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: auth
+                }
+            } ).then( function ( response ) {
+                return response.json();
+            } ).then( function ( response ) {
+                hideLoader();
+                    ClassList.main = response;
+                return Tools.open( response.name, response.describe );
+            } ).catch( function () {
+                hideLoader();
+            } );
+        }
     } );
 } );

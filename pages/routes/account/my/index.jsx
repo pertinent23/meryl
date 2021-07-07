@@ -23,17 +23,17 @@ export default function MyAccount () {
                         <div className="myIcon d-inline-block rounded-circle my-3"> N </div>
                     </div>
                     <div className="py-5">
-                        <div className="py-3 d-flex justify-content-center align-items-center" contentEditable="false">
+                        <div className="py-3 d-flex justify-content-center align-items-center">
                             <div className="label px-3"> Nom: </div>
-                            <div className="data name" contentEditable="true"> user1 </div>
+                            <div className="data name" contentEditable="true"></div>
                         </div>
-                        <div className="py-3 d-flex justify-content-center align-items-center" contentEditable="false">
+                        <div className="py-3 d-flex justify-content-center align-items-center">
                             <div className="label px-3"> Email: </div>
-                            <div className="data email" contentEditable="true"> mail.user1 </div>
+                            <div className="data email" contentEditable="true"></div>
                         </div>
-                        <div className="py-3 d-flex justify-content-center align-items-center" contentEditable="false">
+                        <div className="py-3 d-flex justify-content-center align-items-center">
                             <div className="label px-3"> Mot de passe: </div>
-                            <div className="data password" contentEditable="true"> mail.password1 </div>
+                            <div className="data password" contentEditable="true"></div>
                         </div>
                     </div>
                     <div className="content-button p-5 d-flex justify-content-end">
@@ -44,3 +44,8 @@ export default function MyAccount () {
         </Fragment>
     );
 };
+
+MyAccount.scripts = [
+    '/js/extends/account.js',
+    '/js/extends/my.js'
+];

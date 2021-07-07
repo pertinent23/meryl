@@ -43,8 +43,9 @@ export default function Class () {
                                         </div>
                                         <div className="collapse show" id="collapse-1" data-parent="#accordion" data-labbeledby="head-1">
                                             <div className="card-body py-0 px-0">
-                                                <div className="card-content d-flex flex-column px-1 px-md-2">
-                                                    <div className="card simulation-card class-card px-3 py-2 shadow border-0 my-2 pr-0">
+                                                <div className="card-content d-flex flex-column px-1 px-md-2 my-other-class">
+                                                    Aucune
+                                                    {/*<div className="card simulation-card class-card px-3 py-2 shadow border-0 my-2 pr-0">
                                                         <div className="card-head">
                                                             Nom de la classe
                                                         </div>
@@ -56,20 +57,7 @@ export default function Class () {
                                                                 <a href="#" className="btn px-4 py-2 open-class openClassButton" data-class="name" data-id="id"> Ouvrir </a>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div className="card simulation-card class-card px-3 py-2 shadow border-0 my-2 pr-0">
-                                                        <div className="card-head">
-                                                            Nom de la classe
-                                                        </div>
-                                                        <div className="card-body px-0">
-                                                            <div className="description">
-                                                                Une petite description de la classe
-                                                            </div>
-                                                            <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                                <a href="#" className="btn px-4 py-2 open-class openClassButton" data-class="name" data-id="id"> Ouvrir </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    </div>*/}
                                                 </div>
                                             </div>
                                         </div>
@@ -90,8 +78,9 @@ export default function Class () {
                                         </div>
                                         <div className="collapse" id="collapse-2" data-parent="#accordion" data-labbeledby="head-2">
                                             <div className="card-body py-0 px-0">
-                                                <div className="card-content d-flex flex-column px-1 px-md-2">
-                                                    <div className="card simulation-card class-card px-3 py-2 shadow border-0 my-2 pr-0">
+                                                <div className="card-content d-flex flex-column px-1 px-md-2 my-class">
+                                                    Aucune
+                                                    {/*<div className="card simulation-card class-card px-3 py-2 shadow border-0 my-2 pr-0">
                                                         <div className="card-head">
                                                             Nom de la classe
                                                         </div>
@@ -105,7 +94,7 @@ export default function Class () {
                                                                 <a href="#" className="btn my-2 px-3 py-2 open-class openClassButton" data-class="name" data-id="id"> Ouvrir </a>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div>*/}
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +110,7 @@ export default function Class () {
                                         <input className="my-2" type="text" name="class-id" id="class-id" placeholder="Id: "/>
                                         <input className="my-2" type="password" name="class-password" id="class-password" placeholder="Mot de passe: "/>
                                         <div className="container-fluid d-flex justify-content-end pt-5">
-                                            <div id="#" className="btn px-4 py-2"> Ajouter </div>
+                                            <div id="addUserInClass" className="btn px-4 py-2"> Ajouter </div>
                                         </div>
                                     </div>
                                 </div>
@@ -147,3 +136,7 @@ export default function Class () {
         </Fragment>
     );
 };
+
+Class.scripts = [
+    '/js/extends/class.getter.js'
+];

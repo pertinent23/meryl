@@ -29,7 +29,7 @@ export default function Inscription () {
                             </div>
                             <div className="container text-danger text-center" id="form-error"></div>
                             <div className="content-buttons d-flex justify-content-end pr-4 px-4 pt-4">
-                                <input type="button" value="Je m'inscrit" className="button-type-1 button mr-4" id="submit" data-url="/routes/account"/>
+                                <input type="button" value="Je m'inscrit" className="button-type-1 button mr-4" id="submit" data-url="/routes/connection"/>
                                 <input type="button" value="Connection" className="button-type-2 button" id="second" data-url="/routes/connection"/>
                             </div>
                         </div>

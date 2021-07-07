@@ -16,8 +16,8 @@ Axios.test = {
     client_id: Axios.client_id,
     client_secret: Axios.client_secret,
     grant_type: Axios.grant_type,
-    username: 'kencoorp@gmail.com',
-    password: 'kennel12345'
+    username: 'delano@gmail.com',
+    password: 'delano12345'
 }
 
 window.hideLoader = function () {
@@ -28,6 +28,38 @@ window.hideLoader = function () {
         loader.hide();
         return page.show();
     } );
+};
+
+function getToken() {
+    try{
+        const val = JSON.parse(
+            Digital.getStorage( 'jwtu' )
+        );
+        if ( !val )
+            throw "Jwtu";
+        return val;
+    } catch( e ) {
+        window.location = '/routes/connection/';
+    }
+};
+
+function getUser() {
+    try{
+        const val =  JSON.parse(
+            Digital.getStorage( 'user' )
+        );
+        if ( !val )
+            throw "User";
+        return val;
+    } catch( e ) {
+        window.location = '/routes/connection/';
+    }
+};
+
+function saveUser( user ) {
+    return Digital.setStorage( 'user', JSON.stringify(
+        user
+    ) );
 };
 
 window.showLoader = function () {

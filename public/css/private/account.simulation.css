@@ -123,6 +123,7 @@
     border-radius: 4px;
     font-size: 0.9em;
     font-weight: 600;
+    box-shadow: none !important;
 }
 
 .buttonSpace .statistic{
@@ -132,6 +133,7 @@
     border-radius: 3px;
     font-size: 0.85em;
     font-weight: 600;
+    box-shadow: none !important;
 }
 
 .spaceHead{

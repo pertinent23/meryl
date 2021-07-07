@@ -97,3 +97,7 @@ export default function AccountHome () {
         </Fragment>
     );
 };
+
+AccountHome.scripts = [
+    '/js/extends/account.js'
+];
