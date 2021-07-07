@@ -105,7 +105,7 @@ export default function Class () {
                         <div className="col-12 col-md-5 col-lg-4 d-flex flex-column">
                             <div className="container-fluid pt-4 px-1 px-md-3 px-md-0">
                                 <div className="box-add py-3 pt-5 px-2 rounded shadow" id="adding-box">
-                                    <div className="title text-center"> Ajouter une classe </div>
+                                    <div className="title text-center"> Se connecter à une classe </div>
                                     <div className="form d-flex flex-column align-items-center py-5">
                                         <input className="my-2" autoComplete="off" type="text" name="class-id" id="class-id" placeholder="Id: "/>
                                         <input className="my-2" autoComplete="off" type="password" name="class-password" id="class-password" placeholder="Mot de passe: "/>
