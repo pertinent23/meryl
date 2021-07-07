@@ -27,6 +27,26 @@ export default function Simulation () {
                             <div className="container-fluid px-1 px-sm-2">
                                 <div className="accordion my-4" id="accordion">
                                     <div className="card">
+                                        <div className="card-heard" id="head-3">
+                                            <div className="head-content d-flex">
+                                                <div 
+                                                    className="head-data" 
+                                                    type="button" 
+                                                    data-toggle="collapse" 
+                                                    data-target="#collapse-3" 
+                                                    data-expanded="false" 
+                                                    data-controls="collapse-3">
+                                                        Liste des simulations crées
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="collapse show" id="collapse-3" data-parent="#accordion" data-labbeledby="head-3">
+                                            <div className="card-body py-0 px-0">
+                                                <div className="card-content d-flex flex-column px-1 px-md-2" id="content-all-sim"> Aucune </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="card">
                                         <div className="card-heard" id="head-1">
                                             <div className="head-content d-flex">
                                                 <div 
@@ -40,38 +60,9 @@ export default function Simulation () {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="collapse show" id="collapse-1" data-parent="#accordion" data-labbeledby="head-1">
+                                        <div className="collapse" id="collapse-1" data-parent="#accordion" data-labbeledby="head-1">
                                             <div className="card-body py-0 px-0">
-                                                <div className="card-content d-flex flex-column px-0 px-1 px-md-2">
-                                                    <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0">
-                                                        <div className="card-head">
-                                                            Nom de la simulation
-                                                        </div>
-                                                        <div className="card-body px-0">
-                                                            <div className="description">
-                                                                Une petite description de la simulation
-                                                            </div>
-                                                            <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                                <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
-                                                                <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0">
-                                                        <div className="card-head">
-                                                            Nom de la simulation
-                                                        </div>
-                                                        <div className="card-body px-0">
-                                                            <div className="description">
-                                                                Une petite description de la simulation
-                                                            </div>
-                                                            <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                                <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
-                                                                <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <div className="card-content d-flex flex-column px-0 px-1 px-md-2" id="archived-sim"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -91,27 +82,7 @@ export default function Simulation () {
                                         </div>
                                         <div className="collapse" id="collapse-2" data-parent="#accordion" data-labbeledby="head-2">
                                             <div className="card-body py-0 px-0">
-                                                <div className="card-content d-flex flex-column px-1 px-md-2"> Aucune </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="card">
-                                        <div className="card-heard" id="head-3">
-                                            <div className="head-content d-flex">
-                                                <div 
-                                                    className="head-data" 
-                                                    type="button" 
-                                                    data-toggle="collapse" 
-                                                    data-target="#collapse-3" 
-                                                    data-expanded="false" 
-                                                    data-controls="collapse-3">
-                                                        Simulations crées
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="collapse" id="collapse-3" data-parent="#accordion" data-labbeledby="head-3">
-                                            <div className="card-body py-0 px-0">
-                                                <div className="card-content d-flex flex-column px-1 px-md-2"> Aucune </div>
+                                                <div className="card-content d-flex flex-column px-1 px-md-2" id="received-sim"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -141,3 +112,7 @@ export default function Simulation () {
         </Fragment>
     );
 };
+
+Simulation.scripts = [
+    '/js/extends/sim.getter.js'
+];

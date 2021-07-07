@@ -566,6 +566,81 @@ const initSecondEngine = () => {
     );
 };
 
+function emptyList() {
+    return $( '#content-all-sim' ).empty();
+};
+
+function addSimulation( node, sim ) {
+    const 
+        key = sim.key || sim.content.key,
+        parent = {
+            create: $( '#content-all-sim' ),
+            archived: $( '#archived-sim' ),
+            received: $( '#received-sim' ) 
+        };
+    return $( parent[ key ] ).append( node );
+};
+
+function createSimulation( data, mode ) {
+    const sim = mode === 1 ? data : data.content;
+    utils.activeSimualtion = sim;
+    const 
+        node = $( {
+            el: 'div',
+            class: 'card simulation-card px-3 py-2 shadow border-0 my-2 pr-0',
+            content: {
+                el: 'div',
+                class: 'card-head',
+                content: sim.name
+            }
+        } ),
+        body = $( {
+            el: 'div',
+            class: 'card-body px-0',
+            content: ''
+        } ),
+        view = $( {
+            el: 'button',
+            class: 'btn-outline mr-3 px-3 py-2 showSimulationButton',
+            content: 'Visualiser'
+        } ),
+        Start = $( {
+            el: 'button',
+            class: 'btn px-3 py-2 startSimulationButton',
+            content: 'Commencer'
+        } );
+    node.append( body );
+    body.append( {
+        el: 'div',
+        class: 'description',
+        content: sim.description
+    } );
+
+    const buttons = body.append( {
+        el: 'div',
+        class: 'container-fluid d-flex justify-content-end pt-4 pr-1',
+        content: ''
+    } );
+
+    if ( mode === 1 || mode === 2 ) 
+        buttons.append( view );
+    
+    view.click( function () {
+        InterfaceManager.openInterFace( sim, true );
+    } );
+
+        body.append( buttons );
+    return node;
+};
+
+
+function pileSimulation( sim, mode ) {
+    return addSimulation(
+        createSimulation( sim, mode ),
+        sim
+    );
+};
+
 const InterfaceManager = {
     components: { },
     items( list = [] ) {
@@ -797,10 +872,32 @@ const InterfaceManager = {
                         */
                         console.log( data );
                     } else {
-                        const data = Simulation.saveNetWork();
-                        return $.setStorage( 'save', JSON.stringify(
-                            data
-                        ) );
+                        const MySimulation = Simulation.saveNetWork();
+                        const 
+                            user = getUser(),
+                            path = Axios.getUrl( `/api/simulation/` );
+                            Axios.request = 'post';
+                            MySimulation.key = 'create';
+                        showLoader();
+                        fetch( path, {
+                            method: Axios.request,
+                            mode: 'cors',
+                            body: JSON.stringify( {
+                                content: MySimulation,
+                                creator: user.id
+                            } ),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        } ).then( function ( response ) {
+                            return response.json();
+                        } ).then( function ( response ) {
+                                pileSimulation( MySimulation, 1 );
+                            hideLoader();
+                            InterfaceManager.closeApi();
+                        } ).catch( function ( err ) {
+                            return hideLoader();
+                        } );
                     }
                 } );
         return button.click( function( ) {
