@@ -629,6 +629,13 @@ function createSimulation( data, mode ) {
         InterfaceManager.openInterFace( sim, true );
     } );
 
+    if ( mode === 4 ){
+        buttons.append( Start );
+        Start.text( 'Poster' ).click( function () {
+            console.log( 'posted' );
+        } );
+    }
+
         body.append( buttons );
     return node;
 };

@@ -83,6 +83,7 @@ function createAllClass() {
         emptyCreatedList();
     for( const createdClass of ClassList.created ) {
         createdClass.describe = `Id: ${createdClass.pseudo} \n Password: ${createdClass.password}`;
+        createdClass.isAdmin = true;
         addClass(
             createClass( createdClass.name, createdClass.describe, true, createdClass ),
             true,
@@ -91,10 +92,11 @@ function createAllClass() {
 
     if( ClassList.added.length != 0 )
         emptyAddedList(); 
-    for( const addedClass of ClassList.created ) {
+    for( const addedClass of ClassList.added ) {
+        addedClass.isAdmin = false;
         addClass(
-            createClass( addedClass.name, addedClass.describe, true, createdClass ),
-            true,
+            createClass( addedClass.name, addedClass.describe, false, addedClass ),
+            false,
         );
     }
 };
@@ -131,6 +133,7 @@ Digital( function ( $ ) {
             } ).then( function ( response ) {
                 if( Digital.isArray( response ) )
                     ClassList.added = response;
+                        createAllClass();
                 return hideLoader();
             } );
         return createAllClass();

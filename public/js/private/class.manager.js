@@ -33,10 +33,115 @@ const Tools = {
     closeClass() {
         return hide( this.class );
     },
+    addPendingSimulation( list ) {
+        const parent = $( "#contentSimulationToAdd" );
+            parent.empty();
+            for( const item of list ) {
+                const 
+                    node = createSimulation( item, 4 );
+                parent.append( node );
+            }
+        return this;
+    },
+    addSimulation( simList ) {
+        let both = [];
+        const parent = $( '.spaceSimulationListContent' );
+            for ( const sim of simList ) {
+                const 
+                    node = $( {
+                        el: 'div',
+                        class: 'col'
+                    } );
+                    node.append( createSimulation( sim, 3 ) );
+                    both.push( node );
+                if ( both.length === 2 ) {
+                    const 
+                        row = $( { el: 'div', class: 'row' } );
+                        row.append( both );
+                    parent.append( row );
+                    both = [];
+                }
+            }
+            const 
+                row = $( { el: 'div', class: 'row' } );
+                row.append( both );
+            parent.append( row );
+        return row;
+    },
+    createUser( data ) {
+        const 
+            node = $( {
+                el: 'div',
+                class: 'user container-fluid d-flex border justify-content-center align-items-center py-2 mt-2',
+                content: {
+                    el: 'div',
+                    class: 'icon d-flex justify-content-center align-items-center',
+                    content: data.username[ 0 ]
+                }
+            } ),
+            userData = $( {
+                el: 'div',
+                class: 'user-data flex-column d-flex flex-column pl-3',
+                content: ' '
+            } );
+            userData.append( {
+                el: 'div',
+                class: 'user-name',
+                content: data.username
+            } );
+            
+            const button = userData.append( {
+                el: 'div',
+                class: 'user-options d-flex justify-content-end w-100',
+                content: ''
+            } )
+            .append( {
+                el: 'button',
+                class: 'user-action btn '.concat( ClassList.main.isAdmin ? '' : 'd-none' ),
+                content: 'Supprimer'
+            } );
+
+            node.append( userData );
+            button.click( function () {
+                console.log( 'delete' );
+            } );
+        return node;
+    },
+    addUser( list ) {
+        const 
+            parent = $( '#contentListOfMember' ).empty();
+                for ( const item of list )
+                    parent.append(
+                        Tools.createUser( item )
+                    );
+                if ( list.length === 0 ) 
+                        parent.append( 'Aucun participant pour l\'instant' );
+        return this;
+    },
     openClass( name ) {
         const 
             obj = this,
             token = ClassList.main;
+            showLoader();
+            token.isMain ? this.addButton.show() : this.addButton.hide();
+            const 
+                path = Axios.getUrl( `/api/simul-classe/${token.id}/` );
+                Axios.get( path )
+                .then( function ( response ) {
+                    if ( Digital.isArray( response ) )
+                        Tools.addSimulation( response );
+                            ClassList.mainListSim = response;
+                        const path = Axios.getUrl( `/api/all-participant-classe/${token.id}/` );
+                            Axios.get( path ).then( function ( response ) {
+                                if ( Array.isArray( response ) )
+                                    Tools.addUser( response );
+                                return hideLoader();
+                            } );
+                    return this;
+                } )
+                .catch( function ( err ) {
+                    return hideLoader();
+                } );
                     this.setClassName( name );
                 show( this.class );
                     this.memberButton.click( function () {
@@ -58,6 +163,15 @@ const Tools = {
                 this.closeAddButton.click( function () {
                     return Tools.closeAdd();
                 } );
+            showLoader();
+        const 
+            user = getUser(),
+            path = Axios.getUrl( `/api/simul-create-by-user/${user.id}/` );
+            Axios.get( path ).then( function ( response ) {
+                if ( Digital.isArray( Tools.addPendingSimulation( response ) ) )
+                    Tools.addPendingSimulation( response );
+                return hideLoader();
+            } );
         return show( this.add );
     },
     closeAdd() {
@@ -171,17 +285,16 @@ Digital( function ( $ ) {
 
 Digital( function ( $ ) {
     const
-        idField = $( '#class-id' ),
+        psuedoField = $( '#class-id' ),
         passwordField = $( '#class-password' );
     return $( '#addUserInClass' ).click( function () {
         const 
-            id = idField.value(),
+            pseudo = psuedoField.value(),
             password = passwordField.value();
-        if ( id ) {
+        if ( pseudo && password ) {
             showLoader();
             const 
                 path = Axios.getUrl( '/api/login-classe/' ),
-                user = getUser(),
                 token = getToken(),
                 auth = 'Bearer '.concat( token.access_token );
                 Axios.request = 'post';
@@ -189,8 +302,7 @@ Digital( function ( $ ) {
                 method: Axios.request.toLocaleLowerCase(),
                 mode: 'cors',
                 body: JSON.stringify( {
-                    user: user.id,
-                    class: parseInt( id ),
+                    pseudo: pseudo,
                     password: password
                 } ),
                 headers: {
@@ -200,6 +312,7 @@ Digital( function ( $ ) {
             } ).then( function ( response ) {
                 return response.json();
             } ).then( function ( response ) {
+                console.log( response );
                 hideLoader();
                     ClassList.main = response;
                 return Tools.open( response.name, response.describe );

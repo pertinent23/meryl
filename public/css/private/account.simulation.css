@@ -843,6 +843,12 @@
     color: #AAAAAA;
 }
 
+#contentSimulationToAdd .simulation-card{
+    height: 150px !important;
+    max-height: 150px !important;
+    font-size: 0.8em !important;
+}
+
 @media screen and ( min-width: 576px ) {
     .dataSpaceItem{
         max-width: 350px;
@@ -905,6 +911,10 @@
 @media screen and ( min-width: 776px ) {
     .dataSpaceItem{
         position: relative;
+    }
+
+    #contentSimulationToAdd .description{
+        display: none !important;
     }
 }
 

@@ -5,7 +5,7 @@ export default function Api () {
         <Fragment>
             <div className="api api-class d-none flex-column">
                 <div className="container-fluid start d-flex align-items-center border-bottom">
-                    <div className="icon mr-3" id="class-icon"> NC </div>
+                    <div className="icon mr-3 px-3" id="class-icon"> NC </div>
                     <div className="name" id="class-shown-name"> Nom de la classe </div>
                     <div className="_icon d-flex justify-content-center align-items-center" id="close-api-class">
                         <div className="items item1"></div>
@@ -23,8 +23,8 @@ export default function Api () {
                                 </div>
                             </div>
                             <div className="spaceList d-block h-100 overflow-auto">
-                                <div className="spaceListContent p-2 d-block">
-                                    <div className="user container-fluid d-flex border justify-content-center align-items-center py-2 mt-2">
+                                <div className="spaceListContent p-2 d-block" id="contentListOfMember">
+                                    {/*<div className="user container-fluid d-flex border justify-content-center align-items-center py-2 mt-2">
                                         <div className="icon d-flex justify-content-center align-items-center"> N1 </div>
                                         <div className="user-data flex-column d-flex flex-column pl-3">
                                             <div className="user-name"> Nom1 </div>
@@ -32,16 +32,7 @@ export default function Api () {
                                                 <button className="user-action btn"> Supprimer </button>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="user container-fluid d-flex border justify-content-center align-items-center py-2 mt-2">
-                                        <div className="icon d-flex justify-content-center align-items-center"> N2 </div>
-                                        <div className="user-data flex-column d-flex flex-column pl-3">
-                                            <div className="user-name"> Nom2 </div>
-                                            <div className="user-options d-flex justify-content-end w-100">
-                                                <button className="user-action btn"> Supprimer </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div>*/}
                                 </div>
                             </div>
                         </div>
@@ -96,42 +87,7 @@ export default function Api () {
                         </div>
                         <div className="contentSpaceItem d-flex flex-column listSpaceItem overflow-hidden">
                             <div className="spaceSimulationList d-block h-100 overflow-auto">
-                                <div className="spaceSimulationListContent px-2">
-                                    <div className="row">
-                                        <div className="col">
-                                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0 w-100">
-                                                <div className="card-head">
-                                                    Nom de la simulation
-                                                </div>
-                                                <div className="card-body px-0">
-                                                    <div className="description">
-                                                        Une petite description de la simulation
-                                                    </div>
-                                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                        <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
-                                                        <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col">
-                                            <div className="card simulation-card px-3 py-2 shadow border-0 my-2 pr-0 w-100">
-                                                <div className="card-head">
-                                                    Nom de la simulation
-                                                </div>
-                                                <div className="card-body px-0">
-                                                    <div className="description">
-                                                        Une petite description de la simulation
-                                                    </div>
-                                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                                        <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
-                                                        <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div className="spaceSimulationListContent px-2"></div>
                             </div>
                         </div>
                     </div>

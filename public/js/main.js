@@ -62,6 +62,23 @@ function saveUser( user ) {
     ) );
 };
 
+Axios.get = function ( url ) {
+    const 
+        path = url,
+        token = getToken(),
+        auth = 'Bearer '.concat( token.access_token );
+        Axios.request = 'get';
+    return fetch( path, {
+        method: Axios.request.toLocaleLowerCase(),
+        mode: 'cors',
+        headers: {
+            Authorization: auth
+        }
+    } ).then( function ( response ) {
+        return response.json();
+    } );
+};
+
 window.showLoader = function () {
     const 
         loader = $( "#loader" ),
