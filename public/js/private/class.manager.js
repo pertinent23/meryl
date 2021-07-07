@@ -52,7 +52,7 @@ const Tools = {
                 const 
                     node = $( {
                         el: 'div',
-                        class: 'col'
+                        class: both.length === 1 ? 'col-12 col-md-6' : 'col'
                     } );
                     node.append( createSimulation( sim, 3 ) );
                     both.push( node );
@@ -126,7 +126,7 @@ const Tools = {
                         Tools.createUser( item )
                     );
                 if ( list.length === 0 ) 
-                        parent.append( 'Aucun participant pour l\'instant' );
+                        parent.text( 'Aucun participant pour l\'instant' );
         return this;
     },
     openClass( name ) {

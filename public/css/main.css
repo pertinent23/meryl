@@ -76,7 +76,7 @@ body {
 .loader .loader-item{
     height: 150px;
     width: 150px;
-    border: 6px solid var( --purple-2 );
+    border: 6px solid #3D489F;
     border-top-color: transparent;
     animation: rotate 1.5s ease-out 0s infinite;
 }
