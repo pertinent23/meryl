@@ -658,7 +658,6 @@ function createSimulation( data, mode ) {
                     classe: ClassList.main.id
                 };
             Axios.post( url, body ).then( function ( response ) {
-                console.log( response );
                 ClassList.main.simList.push( sim );
                     Tools.addSimulation( ClassList.main.simList );
                     node.remove();
@@ -944,13 +943,11 @@ const InterfaceManager = {
                             * data to the serve  
                             * 
                         */
-                        console.log( current.main, current.sim, data );
                         if ( ClassList.mode !== 6 ) {
                             const 
                                 user = getUser(),
                                 path = Axios.getUrl( `/api/note/` );
                                 Axios.request = 'post';
-                                console.log( path );
                             fetch( path, {
                                 method: Axios.request,
                                 mode: 'cors',

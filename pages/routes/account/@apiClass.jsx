@@ -48,7 +48,7 @@ export default function Api () {
                                 <div className="spaceListContent p-2 d-block">
                                     <div className="py-2">
                                         <span className="data-title"> Effectif: </span>
-                                        <span className="data-val pl-3"> 95 élèves </span>
+                                        <span className="data-val pl-3" id="classMember"> 95 élèves </span>
                                     </div>
                                     <div className="py-2">
                                         <span className="data-title"> Pourcentage de réussite: </span>
@@ -62,7 +62,7 @@ export default function Api () {
                                             <span className="progression-bar taux"> 45% </span>
                                         </span>
                                     </div>
-                                    <div className="py-2">
+                                    <div className="py-2 d-none">
                                         <span className="data-title"> Indice de progression: </span>
                                         <span className="progression my-2 ml-4">
                                             <span className="progression-bar indice"> 2% </span>

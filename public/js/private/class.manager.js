@@ -50,6 +50,7 @@ const Tools = {
             ClassList.main.simList = simList;
         const parent = $( '.spaceSimulationListContent' );
             parent.empty();
+            ClassList.nS = simList.length;
             for ( const sim of simList ) {
                 const 
                     node = $( {
@@ -126,6 +127,7 @@ const Tools = {
     addUser( list ) {
         const 
             parent = $( '#contentListOfMember' ).empty();
+            ClassList.n = list.length;
                 for ( const item of list )
                     parent.append(
                         Tools.createUser( item )
@@ -211,6 +213,28 @@ const Tools = {
                 } );
         return show( this.member );
     },
+    statManager( data ) {
+        $( '#classMember' ).text( `${ClassList.n} élève(s).` );
+        const 
+            win = $( '.win' ),
+            taux = $( '.taux' );
+
+        let nb = 0;
+        const 
+            tVal = Math.ceil( ( data.length / ClassList.nS ) * 100 ),
+            realVal = ClassList.main.isAdmin ? tVal / ( ClassList.n || 1 ) : tVal;
+            taux.css( { width: `${realVal}px` } ).text( `${realVal}%` );
+            for( const item of data ) {
+                if ( item.value > 10 )
+                    nb++;
+            }
+
+        const
+            tWin = Math.ceil( ( nb / ( data.length || 1 ) ) * 100 );
+            win.css( { width: `${tWin}px` } ).text( `${tWin}%` );
+        
+        return this;
+    },
     openStat() {
         showLoader();
         const obj = this;
@@ -222,6 +246,7 @@ const Tools = {
             const 
                 path = Axios.getUrl( `/api/get-note-classe/${ ClassList.main.id }/` );
         return Axios.get( path ).then( function ( response ) {
+                Tools.statManager( response );
             hideLoader();
             return show( obj.stat );
         } );
