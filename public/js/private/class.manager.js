@@ -31,6 +31,7 @@ const Tools = {
     statButton: null,
     addButton: null,
     closeClass() {
+        ClassList.main = null;
         return hide( this.class );
     },
     addPendingSimulation( list ) {
@@ -45,16 +46,20 @@ const Tools = {
     },
     addSimulation( simList ) {
         let both = [];
-        ClassList.main.simList = simList;
+        if ( Digital.isObject( ClassList ) )
+            ClassList.main.simList = simList;
         const parent = $( '.spaceSimulationListContent' );
             parent.empty();
             for ( const sim of simList ) {
                 const 
                     node = $( {
                         el: 'div',
-                        class: both.length === 1 ? 'col-12 col-md-6' : 'col'
+                        class: both.length === 1 
+                            ? 'py-3 px-3 col-12 col-md-6 d-flex justify-content-center align-items-center' 
+                            : 'py-3 px-3 col d-flex justify-content-center align-items-center'
                     } );
-                    node.append( createSimulation( sim, 3 ) );
+                    node.append( createSimulation( sim, 3 ).css( { minWidth: '98%' } ) );
+                    node.first( true ).removeClass( 'my-2' );
                     both.push( node );
                 if ( both.length === 2 ) {
                     const 
@@ -114,7 +119,7 @@ const Tools = {
 
             node.append( userData );
             button.click( function () {
-                console.log( 'delete' ); 
+                button.remove();
             } );
         return node;
     },
@@ -133,8 +138,9 @@ const Tools = {
         const 
             obj = this,
             token = ClassList.main;
+            ClassList.mainListSim = [];
             showLoader();
-            token.isMain ? this.addButton.show() : this.addButton.hide();
+            token.isAdmin ? utils.show( this.addButton ) : utils.hide( this.addButton );
             const 
                 path = Axios.getUrl( `/api/simul-classe/${token.id}/` );
                 Axios.get( path )
@@ -206,12 +212,19 @@ const Tools = {
         return show( this.member );
     },
     openStat() {
-        this.closeMember();
-            this.closeAdd();
-                this.closeStatButton.click( function () {
-                    return Tools.closeStat();
-                } );
-        return show( this.stat );
+        showLoader();
+        const obj = this;
+            this.closeMember();
+                this.closeAdd();
+                    this.closeStatButton.click( function () {
+                        return Tools.closeStat();
+                    } );
+            const 
+                path = Axios.getUrl( `/api/get-note-classe/${ ClassList.main.id }/` );
+        return Axios.get( path ).then( function ( response ) {
+            hideLoader();
+            return show( obj.stat );
+        } );
     },
     setClassName( name = '' ) {
         this.classNameField.text( name );

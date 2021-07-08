@@ -20,70 +20,7 @@ export default function Training () {
                     show={ false }
                     img={ '/img/home/training.jpeg' }
                 />
-                <div className="container-fluid py-3">
-                    <div className="row training-row">
-                        <div className="col training-col d-flex flex-column align-items-center py-3">
-                            <div className="card simulation-card for-training px-3 py-2 shadow border-0 my-2 pr-0 w-100">
-                                <div className="card-head">
-                                    Nom de la simulation
-                                </div>
-                                <div className="card-body px-0">
-                                    <div className="description">
-                                        Une petite description de la simulation
-                                    </div>
-                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                        <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
-                                        <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card simulation-card for-training px-3 py-2 shadow border-0 my-2 pr-0 w-100">
-                                <div className="card-head">
-                                    Nom de la simulation
-                                </div>
-                                <div className="card-body px-0">
-                                    <div className="description">
-                                        Une petite description de la simulation
-                                    </div>
-                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                        <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
-                                        <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-12 col-md-6 training-col d-flex flex-column align-items-center py-3">
-                            <div className="card simulation-card for-training px-3 py-2 shadow border-0 my-2 pr-0 w-100">
-                                <div className="card-head">
-                                    Nom de la simulation
-                                </div>
-                                <div className="card-body px-0">
-                                    <div className="description">
-                                        Une petite description de la simulation
-                                    </div>
-                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                        <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
-                                        <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card simulation-card for-training px-3 py-2 shadow border-0 my-2 pr-0 w-100">
-                                <div className="card-head">
-                                    Nom de la simulation
-                                </div>
-                                <div className="card-body px-0">
-                                    <div className="description">
-                                        Une petite description de la simulation
-                                    </div>
-                                    <div className="container-fluid d-flex justify-content-end pt-4 pr-1">
-                                        <button className="btn-outline mr-3 px-3 py-2 showSimulationButton" data-id=""> Visualiser </button>
-                                        <button className="btn px-3 py-2 startSimulationButton" data-id=""> Commencer </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div className="container-fluid py-3" id="contentAll"></div>
             </div>
             <ApiSimulation />
         </Fragment>
@@ -91,5 +28,6 @@ export default function Training () {
 };
 
 Training.scripts = [
-    '/js/style.js'
+    '/js/extends/training.getter.js',
+    '/js/style.js',
 ]; 

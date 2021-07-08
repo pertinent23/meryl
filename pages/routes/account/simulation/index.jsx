@@ -20,6 +20,30 @@ export default function Simulation () {
                     show={ false }
                     img={ '/img/home/simulation.jpeg' }
                 />
+                <div className="sendSimulation d-none position-fixed w-100 h-100 justify-content-center">
+                    <div className="sendSimContent d-flex flex-column">
+                        <div className="container-fluid start d-flex align-items-center border-bottom">
+                            <div className="name"> Liste des utilisateurs </div>
+                            <div className="_icon d-flex justify-content-center align-items-center" id="close-sendApi">
+                                <div className="items item1"></div>
+                                <div className="items item2"></div>
+                            </div>
+                        </div>
+                        <div className="end d-block overflow-auto">
+                            <div className="container-fluid pt-2 pb-4 px-1 px-md-2" id="user-list">
+                                {/*<div className="user container-fluid d-flex border justify-content-center align-items-center py-2 mt-2 shadow rounded">
+                                    <div className="icon d-flex justify-content-center align-items-center"> N1 </div>
+                                    <div className="user-data flex-column d-flex flex-column pl-3">
+                                        <div className="user-name"> Nom1 </div>
+                                        <div className="user-options d-flex justify-content-end w-100">
+                                            <button className="user-action btn"> Envoyer </button>
+                                        </div>
+                                    </div>
+                                </div>*/}
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="container-fluid py-3 px-0 px-sm-2">
                     <div className="row">
                         <div className="col">

@@ -852,6 +852,37 @@
     font-size: 0.8em !important;
 }
 
+.sendSimulation{
+    z-index: 250;
+    left: 0px;
+    top: 0px;
+    background-color: rgba( 255, 255, 255, 0.6 );
+    -webkit-backdrop-filter: blur( 4px );
+    backdrop-filter: blur( 4px );
+}
+
+.sendSimContent{
+    background-color: #FFFFFF;
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+}
+
+.sendSimContent .name{
+    flex: 1;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.sendSimContent .icon{
+    background-color: #000000 !important;
+}
+
+.sendSimContent .user-action:hover,
+.sendSimContent .user-action{
+    background-color: #000000;
+}
+
 @media screen and ( min-width: 576px ) {
     .dataSpaceItem{
         max-width: 350px;

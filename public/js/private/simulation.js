@@ -318,7 +318,6 @@ const Simulation = {
         return result;
     },
     compare( sim1, sim2, count ) {
-        console.log( sim1, sim2 );
         let part1, part2;
         const 
             realCount = {},

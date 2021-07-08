@@ -582,7 +582,8 @@ function addSimulation( node, sim ) {
 };
 
 function createSimulation( data, mode ) {
-    const sim = !( 'id' in data ) ? data : data.content;
+    const 
+        sim = !( 'id' in data ) ? data : data.content;
     utils.activeSimualtion = sim;
     const 
         node = $( {
@@ -625,16 +626,25 @@ function createSimulation( data, mode ) {
     if ( mode === 1 || mode === 2 || ( ClassList.main && ClassList.main.isAdmin && mode != 4 ) ) 
         buttons.append( view );
     
+    if ( mode === 2 ) {
+            Start.text( 'Envoyer' );
+        buttons.append( Start );
+    }
+    
     view.click( function () {
         InterfaceManager.openInterFace( sim, true );
     } );
 
     Start.click( function () {
+        current.sim = data;
         InterfaceManager.openInterFace( sim, false );
     } );
 
-    if ( mode === 5 || ( ClassList.main && !ClassList.main.isAdmin ) )
-        buttons.append( Start );
+    if ( mode === 2 ) 
+        Start.click( function () {
+                Utils.sim = sim;
+            Utils.init();
+        } );
 
     if ( mode === 4 ){
         buttons.append( Start );
@@ -647,7 +657,6 @@ function createSimulation( data, mode ) {
                     simulation: data.id,
                     classe: ClassList.main.id
                 };
-                console.log( body );
             Axios.post( url, body ).then( function ( response ) {
                 console.log( response );
                 ClassList.main.simList.push( sim );
@@ -657,6 +666,42 @@ function createSimulation( data, mode ) {
             } );
         } );
     }
+
+    if ( mode === 5 || mode === 3 )
+        buttons.append( Start );
+    
+    if ( mode === 6 ) {
+        buttons.append( view );
+        buttons.append( Start );
+        view.text( 'Archiver' ).click( function () {
+            const 
+                MySimulation = sim,
+                user = getUser(),
+                path = Axios.getUrl( `/api/simulation/` );
+                Axios.request = 'post';
+                MySimulation.key = 'archived';
+            showLoader();
+            fetch( path, {
+                method: Axios.request,
+                mode: 'cors',
+                body: JSON.stringify( {
+                    content: MySimulation,
+                    creator: user.id
+                } ),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            } ).then( function ( response ) {
+                return response.json();
+            } ).then( function ( response ) {
+                    pileSimulation( MySimulation, 1 );
+                    window.location = '/routes/account/simulation';
+                InterfaceManager.closeApi();
+            } ).catch( function ( err ) {
+                return hideLoader();
+            } );
+        } );
+    } 
 
         body.append( buttons );
     return node;
@@ -899,7 +944,31 @@ const InterfaceManager = {
                             * data to the serve  
                             * 
                         */
-                        console.log( data );
+                        console.log( current.main, current.sim, data );
+                        if ( ClassList.mode !== 6 ) {
+                            const 
+                                user = getUser(),
+                                path = Axios.getUrl( `/api/note/` );
+                                Axios.request = 'post';
+                                console.log( path );
+                            fetch( path, {
+                                method: Axios.request,
+                                mode: 'cors',
+                                body: JSON.stringify( {
+                                    value: data.average,
+                                    simulation: current.sim.id,
+                                    classe: ClassList.main.id,
+                                    user: user.id
+                                } ),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            } ).then( function ( response ) {
+                                return response.text();
+                            } ).then( function ( response ) {
+                                console.log( response );
+                            } );
+                        }
                     } else {
                         const MySimulation = Simulation.saveNetWork();
                         const 

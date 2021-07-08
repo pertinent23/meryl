@@ -33,6 +33,7 @@ Digital( function () {
                 data.username = data.email;
                 delete data.email;
             }
+            console.log( data );
             fetch( path, {
                 method: Axios.request.toLocaleLowerCase(),
                 mode: 'cors',
