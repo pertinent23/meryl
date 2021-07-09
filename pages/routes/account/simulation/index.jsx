@@ -70,7 +70,7 @@ export default function Simulation () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="card">
+                                    <div className="card my-3">
                                         <div className="card-heard" id="head-1">
                                             <div className="head-content d-flex">
                                                 <div 
@@ -84,7 +84,7 @@ export default function Simulation () {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="collapse" id="collapse-1" data-parent="#accordion" data-labbeledby="head-1">
+                                        <div className="collapse show" id="collapse-1" data-parent="#accordion" data-labbeledby="head-1">
                                             <div className="card-body py-0 px-0">
                                                 <div className="card-content d-flex flex-column px-0 px-1 px-md-2" id="archived-sim"></div>
                                             </div>
@@ -104,7 +104,7 @@ export default function Simulation () {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="collapse" id="collapse-2" data-parent="#accordion" data-labbeledby="head-2">
+                                        <div className="collapse show" id="collapse-2" data-parent="#accordion" data-labbeledby="head-2">
                                             <div className="card-body py-0 px-0">
                                                 <div className="card-content d-flex flex-column px-1 px-md-2" id="received-sim"></div>
                                             </div>

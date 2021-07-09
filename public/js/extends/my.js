@@ -15,6 +15,8 @@ Digital( function () {
                 name = nameField.text(),
                 email= emailField.text(),
                 path = Axios.getUrl( `/user/${user.id}/` ),
+                token = getToken(),
+                auth = 'Bearer '.concat( token.access_token ),
                 data = {};
                     if ( name != user.username ) {
                             send = true;
@@ -26,13 +28,14 @@ Digital( function () {
                         data.email = email;
                     }
                 Axios.request = 'patch';
-                console.log( data );
+                console.log( data, path );
             return send ? fetch( path, {
                 method: Axios.request.toLocaleLowerCase(),
                 mode: 'cors',
                 body: JSON.stringify( data ),
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    //Authorization: auth
                 }
             } ).then( function ( response ) {
                 return response.json();

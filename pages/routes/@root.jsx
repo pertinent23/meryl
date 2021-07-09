@@ -15,6 +15,7 @@ export default function Root( { children, page } ) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="stylesheet" type="text/css" href="/libs/bootstrap.min.css" />
                 <link rel="stylesheet" type="text/css" href="/css/main.css" />
+                <link rel="icon" href="/img/iconf.png" type="image/png" />
                 <title> { TITLE } </title>
                 <script src="/libs/jquery-3.3.1.slim.min.js"></script>
                 <script src="/libs/popper.min.js"></script>

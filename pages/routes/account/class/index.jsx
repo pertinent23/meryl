@@ -76,7 +76,7 @@ export default function Class () {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="collapse" id="collapse-2" data-parent="#accordion" data-labbeledby="head-2">
+                                        <div className="collapse show" id="collapse-2" data-parent="#accordion" data-labbeledby="head-2">
                                             <div className="card-body py-0 px-0">
                                                 <div className="card-content d-flex flex-column px-1 px-md-2 my-class">
                                                     Aucune
