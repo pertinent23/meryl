@@ -48,5 +48,6 @@ export default function MyAccount () {
 MyAccount.scripts = [
     '/js/extends/account.js',
     '/js/extends/my.js',
+    '/js/extends/account-manager.js',
     '/js/style.js'
 ];

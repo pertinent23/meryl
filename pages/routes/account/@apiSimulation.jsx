@@ -73,6 +73,7 @@ export default function Api () {
                                 </div>
                             </div>
                             <div className="container-fluid finalSpace d-flex justify-content-end py-2">
+                                <div id="note" className="pr-5" style={{fontWeight:600,color: "var(--purple-2)", fontSize: "1.2em"}}></div>
                                 <button className="btn next" id="finalButton" data-btn="start"> Commencer </button>
                                 <button className="btn btn-outline ml-3 save d-none" id="saveButton"> Sauvegarder </button>
                             </div>

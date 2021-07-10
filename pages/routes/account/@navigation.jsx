@@ -68,6 +68,10 @@ export default function Navigation( { page, title, description, href, onClick, s
                     <p className="jumb-text">
                         { description || "Utiliser l'application pour créer des simultations, créer des classes, partager vos simulations a vos élèves, évaluer vos élèves." }
                     </p>
+                    <div className="current-user container-fluid py-1" style={{fontWeight:600, fontSize:"1.2m", color: "#FFFFFF"}}>
+                        <div className="pl-3 py-2" id="current-user-name"></div>
+                        <div className="pl-3 py-2" id="current-user-email"></div>
+                    </div>
                     {
                         show != false ? 
                         <a 

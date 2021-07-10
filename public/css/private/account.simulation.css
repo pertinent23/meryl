@@ -29,8 +29,8 @@
     left: 0px;
     background-color: rgba( 255, 255, 255, 0.6 );
     z-index: 500;
-    -webkit-backdrop-filter: blur( 10px );
-    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 20px );
+    backdrop-filter: blur( 20px );
 }
 
 .api-more-content{
@@ -469,25 +469,6 @@
     align-items: center;
 }
 
-[data-part-toolip]{
-    overflow: hidden;
-}
-
-[data-part-toolip]::after{
-    content: attr( data-part-toolip );
-    display: flex;
-    position: absolute;
-    transition-duration: 0.5s;
-    color: transparent;
-    height: 100%;
-    width: 100%;
-    left: 0px;
-    bottom: 0px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-
 [data-toolip]:hover::after{
     font-size: 0.6em;
     color: #FFFFFF;
@@ -498,12 +479,24 @@
     backdrop-filter: blur( 3px );
 }
 
-[data-part-toolip]:hover::after{
+[data-part-toolip]::after{
+    content: attr( data-part-toolip );
+    display: flex !important;
+    position: absolute;
+    transition-duration: 0.5s;
+    color: transparent;
+    min-height: 20px;
+    min-width: 120px;
+    left: calc( 50% - 60px );
+    top: 90%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
     font-size: 0.6em;
     color: #FFFFFF;
     z-index: 25;
     font-weight: bold;
-    background-color: rgba( 0, 0, 0, 0.5 );
+    background-color: rgba( 0, 0, 0, 0.8 );
     -webkit-backdrop-filter: blur( 3px );
     backdrop-filter: blur( 3px );
 }
@@ -761,8 +754,8 @@
 .creation-box .btn,
 .creation-box .btn:hover{
     background-color: #FFFFFF;
-    color: #000000;
-    font-size: 0.75em;
+    color: var( --purple-2 );
+    font-size: 0.9em;
     font-weight: 600;
     border-radius: 3px !important;
     letter-spacing: 0.15em;

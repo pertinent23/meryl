@@ -123,8 +123,8 @@ export default function Simulation () {
                                             <input type="text" name="simulation-creation-name" id="simulation-creation-name" placeholder="Nom de la simulation: " className="my-3" />
                                             <textarea name="simulation-description" id="simulation-description" placeholder="Description: " className="my-3" cols="35" rows="5"></textarea>
                                             <div className="container-fluid text-danger text-center" id="simulation-creation-error"></div>
-                                            <div className="container-fluid d-flex justify-content-end pt-5">
-                                                <div id="create-simulation" className="btn px-5 py-2"> Créer </div>
+                                            <div className="container-fluid d-flex justify-content-center pt-5">
+                                                <div id="create-simulation" className="btn px-5 py-2 shadow"> Créer </div>
                                             </div>
                                         </div>
                                     </div>
@@ -141,5 +141,6 @@ export default function Simulation () {
 
 Simulation.scripts = [
     '/js/extends/sim.getter.js',
+    '/js/extends/account-manager.js',
     '/js/style.js'
 ];

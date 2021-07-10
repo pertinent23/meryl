@@ -29,5 +29,6 @@ export default function Training () {
 
 Training.scripts = [
     '/js/extends/training.getter.js',
+    '/js/extends/account-manager.js',
     '/js/style.js',
 ]; 

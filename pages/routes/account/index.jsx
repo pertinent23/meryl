@@ -99,5 +99,6 @@ export default function AccountHome () {
 };
 
 AccountHome.scripts = [
-    '/js/extends/account.js'
+    '/js/extends/account.js',
+    '/js/extends/account-manager.js'
 ];

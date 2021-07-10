@@ -124,8 +124,8 @@ export default function Class () {
                                         <div className="form d-flex flex-column align-items-center py-4">
                                             <input type="text" name="class-name" id="class-name" placeholder="Nom de la classe: " className="my-3" />
                                             <textarea name="class-description" id="class-description" placeholder="Description: " className="my-3" cols="35" rows="5"></textarea>
-                                            <div className="container-fluid d-flex justify-content-end pt-5">
-                                                <div id="create-class" className="btn px-5 py-2"> Créer </div>
+                                            <div className="container-fluid d-flex justify-content-center pt-5">
+                                                <div id="create-class" className="btn px-5 py-2 shadow"> Créer </div>
                                             </div>
                                         </div>
                                     </div>
@@ -143,5 +143,6 @@ export default function Class () {
 
 Class.scripts = [
     '/js/extends/class.getter.js',
+    '/js/extends/account-manager.js',
     '/js/style.js'
 ];

@@ -1,4 +1,4 @@
-Digital( function () {
+Digital( function ( $ ) {
     const 
         path = Axios.getUrl( '/user/current_user/' ),
         token = getToken(),

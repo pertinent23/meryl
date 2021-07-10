@@ -943,6 +943,7 @@ const InterfaceManager = {
                             * data to the serve  
                             * 
                         */
+                        $( '#note' ).text( `Resultat: ${data.average} / 20, ${data.note}` );
                         if ( ClassList.mode !== 6 ) {
                             const 
                                 user = getUser(),

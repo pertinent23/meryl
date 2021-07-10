@@ -391,8 +391,8 @@ class Components{
                         */
                         const
                             rect = node.getBoundingClientRect(),
-                            x = rect.left,
-                            y = rect.top;
+                            x = rect.x,
+                            y = rect.y;
                                 obj.data.x = x;
                                 obj.data.y = y;
                             node.on( Simulation.events.dragStart, function () {
@@ -434,9 +434,9 @@ class Components{
 
     verify( x, y ) {
         const 
-            mx = this.getData().width / 2,
-            my = this.getData().height / 2;
-        if ( x >= this.getData().x - mx && x <= ( this.getData().x + this.getData().width + mx ) ) {
+            mx = this.getData().width / 1.5,
+            my = this.getData().height / 1.5;
+        if ( x >= ( this.getData().x - mx ) && x <= ( this.getData().x + this.getData().width + mx ) ) {
             if( y >= this.getData().y - my && y <= ( this.getData().y + this.getData().height + my ) )
                 return true;
         }
@@ -1231,7 +1231,7 @@ class Cable extends Linker{
                         for( let item in Simulation.devices ) {
                             const needed = Simulation.devices[ item ];
                             if ( needed instanceof Components ) {
-                                if ( needed.verify( Simulation.cursor.x, Simulation.cursor.y ) && !obj.removed ) {
+                                if ( needed.verify( x2, y2 ) && !obj.removed ) {
                                         link = needed.link( obj );
                                     break;
                                 }
