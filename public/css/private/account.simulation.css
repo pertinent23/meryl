@@ -62,7 +62,7 @@
 
 .api .start .name{
     flex: 1;
-    font-size: 0.9em;
+    font-size: 1.25em;
     font-weight: 600;
     color: var( --blue-4 );
 }
@@ -71,7 +71,7 @@
     background-color: var( --blue-4 );
     border-radius: 100%;
     padding: 12px 12px;
-    font-size: 0.85em;
+    font-size: 1.2em;
     color: #FFFFFF;
     font-weight: bold;
 }
@@ -204,7 +204,7 @@
 }
 
 .api-text{
-    font-size: 0.9em;
+    font-size: 1.15em;
     letter-spacing: 0.12em;
 }
 
@@ -513,7 +513,7 @@
 }
 
 .Stape .descriptionSpace{
-    font-size: 0.75em;
+    font-size: 1.1em;
     color: #000000;
     letter-spacing: 0.12em;
 }
@@ -599,7 +599,7 @@
 #accordion > .card{
     background-color: #FFFFFF;
     font-weight: 600;
-    font-size: 0.9em;
+    font-size: 1.2em;
     border: 0px !important;
 }
 
@@ -711,9 +711,10 @@
     background-image: url( "/img/private/server1.jpg" );
     background-size: 100% 100%;
     overflow: hidden;
-    border-top: 3px solid #FFFFFF;
-    border-radius: 4px !important;
+    border-radius: 6px !important;
     overflow: hidden !important;
+    max-width: 400px;
+    min-height: 450px;
 }
 
 .creation-box::before{
@@ -725,8 +726,8 @@
     left: 0px;
     top: 0px;
     background-image: linear-gradient( 120deg, rgba( 72, 55, 129, 0.8 ), rgba( 85, 100, 255, 0.6 ) );
-    -webkit-backdrop-filter: blur( 3px );
-    backdrop-filter: blur( 3px );
+    -webkit-backdrop-filter: blur( 5px );
+    backdrop-filter: blur( 5px );
     border-radius: 4px !important;
 }
 
@@ -777,6 +778,7 @@
     overflow: hidden;
     padding-bottom: 80px !important;
     padding-top: 100px !important;
+    max-width: 400px;
 }
 
 .box-add::before{

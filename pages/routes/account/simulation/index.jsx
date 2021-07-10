@@ -116,17 +116,19 @@ export default function Simulation () {
                         <div className="col-12 col-md-5 col-lg-4">
                             <div className="message d-block d-md-none text-center py-3"> Gestion </div>
                             <div className="container-fluid py-4 px-1 px-md-0">
-                                <div className="simulation-creation-box creation-box d-flex flex-column pt-5 pb-3 mt-2">
-                                    <div className="title text-center"> Créer une simulation </div>
-                                    <div className="form d-flex flex-column align-items-center py-4">
-                                        <input type="text" name="simulation-creation-name" id="simulation-creation-name" placeholder="Nom de la simulation: " className="my-3" />
-                                        <textarea name="simulation-description" id="simulation-description" placeholder="Description: " className="my-3" cols="35" rows="5"></textarea>
-                                        <div className="container-fluid text-danger text-center" id="simulation-creation-error"></div>
-                                        <div className="container-fluid d-flex justify-content-end pt-5">
-                                            <div id="create-simulation" className="btn px-5 py-2"> Créer </div>
+                                <center>
+                                    <div className="simulation-creation-box creation-box d-flex flex-column pt-5 pb-3 mt-2">
+                                        <div className="title text-center"> Créer une simulation </div>
+                                        <div className="form d-flex flex-column align-items-center py-4">
+                                            <input type="text" name="simulation-creation-name" id="simulation-creation-name" placeholder="Nom de la simulation: " className="my-3" />
+                                            <textarea name="simulation-description" id="simulation-description" placeholder="Description: " className="my-3" cols="35" rows="5"></textarea>
+                                            <div className="container-fluid text-danger text-center" id="simulation-creation-error"></div>
+                                            <div className="container-fluid d-flex justify-content-end pt-5">
+                                                <div id="create-simulation" className="btn px-5 py-2"> Créer </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </center>
                             </div>
                         </div>
                     </div>

@@ -128,6 +128,27 @@
     transform: rotate( -45deg );
 }
 
+.content-all{
+    max-width: 1500px;
+}
+
+
+@media screen and ( min-width: 1400px ) {
+    .nav-link:hover,
+    .nav-link{
+        font-size: 1.4em;
+    }
+
+    .jumb-title{
+        font-size: 2.5em;
+    }
+
+    .jumb-text{
+        font-size: 1.6em;
+        max-width: 900px;
+    }
+}
+
 @media screen and ( min-width: 768px ) {
     .nav-ind{
         height: 4px;

@@ -28,6 +28,7 @@ Digital( function ( $ ) {
         errorField = $( '#simulation-creation-error' ),
         creationButton = $( '#create-simulation' );
     return creationButton.on( 'click', function () {
+        InterfaceManager.openInterFace( 'Test', 'Une courte description de la' );
         const 
             name = nameField.value(),
             description = descriptionField.value();

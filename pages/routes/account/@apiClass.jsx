@@ -5,7 +5,7 @@ export default function Api () {
         <Fragment>
             <div className="api api-class d-none flex-column">
                 <div className="container-fluid start d-flex align-items-center border-bottom">
-                    <div className="icon mr-3 px-3" id="class-icon"> NC </div>
+                    <div className="icon mr-3 px-3 py-2" id="class-icon"> NC </div>
                     <div className="name" id="class-shown-name"> Nom de la classe </div>
                     <div className="_icon d-flex justify-content-center align-items-center" id="close-api-class">
                         <div className="items item1"></div>

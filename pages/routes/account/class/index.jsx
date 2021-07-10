@@ -21,7 +21,7 @@ export default function Class () {
                     show={ false }
                     img={ '/img/home/class.jpeg' }
                 />
-                <div className="container-fluid py-3 px-0 px-sm-2">
+                <div className="container-fluid py-3 px-0 px-sm-2 content-all">
                     <div className="row">
                         <div className="col">
                             <div className="message d-block text-center py-3 pt-5"> Toutes mes classes </div>
@@ -104,28 +104,32 @@ export default function Class () {
                         </div>
                         <div className="col-12 col-md-5 col-lg-4 d-flex flex-column">
                             <div className="container-fluid pt-4 px-1 px-md-3 px-md-0">
-                                <div className="box-add py-3 pt-5 px-2 rounded shadow" id="adding-box">
-                                    <div className="title text-center"> Se connecter à une classe </div>
-                                    <div className="form d-flex flex-column align-items-center py-5">
-                                        <input className="my-2" autoComplete="off" type="text" name="class-id" id="class-id" placeholder="Id: "/>
-                                        <input className="my-2" autoComplete="off" type="password" name="class-password" id="class-password" placeholder="Mot de passe: "/>
-                                        <div className="container-fluid d-flex justify-content-end pt-5">
-                                            <div id="addUserInClass" className="btn px-4 py-2"> Ajouter </div>
+                                <center>
+                                    <div className="box-add py-3 pt-5 px-2 rounded shadow" id="adding-box">
+                                        <div className="title text-center"> Se connecter à une classe </div>
+                                        <div className="form d-flex flex-column align-items-center py-5">
+                                            <input className="my-2" autoComplete="off" type="text" name="class-id" id="class-id" placeholder="Id: "/>
+                                            <input className="my-2" autoComplete="off" type="password" name="class-password" id="class-password" placeholder="Mot de passe: "/>
+                                            <div className="container-fluid d-flex justify-content-end pt-5">
+                                                <div id="addUserInClass" className="btn px-4 py-2"> Ajouter </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </center>
                             </div>
                             <div className="container-fluid py-3 px-1 px-md-3 px-md-0">
-                                <div className="simulation-creation-box creation-box d-flex flex-column pt-5 pb-3">
-                                    <div className="title text-center"> Créer une classe </div>
-                                    <div className="form d-flex flex-column align-items-center py-4">
-                                        <input type="text" name="class-name" id="class-name" placeholder="Nom de la classe: " className="my-3" />
-                                        <textarea name="class-description" id="class-description" placeholder="Description: " className="my-3" cols="35" rows="5"></textarea>
-                                        <div className="container-fluid d-flex justify-content-end pt-5">
-                                            <div id="create-class" className="btn px-5 py-2"> Créer </div>
+                                <center>
+                                    <div className="simulation-creation-box creation-box d-flex flex-column pt-5 pb-3">
+                                        <div className="title text-center"> Créer une classe </div>
+                                        <div className="form d-flex flex-column align-items-center py-4">
+                                            <input type="text" name="class-name" id="class-name" placeholder="Nom de la classe: " className="my-3" />
+                                            <textarea name="class-description" id="class-description" placeholder="Description: " className="my-3" cols="35" rows="5"></textarea>
+                                            <div className="container-fluid d-flex justify-content-end pt-5">
+                                                <div id="create-class" className="btn px-5 py-2"> Créer </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </center>
                             </div>
                         </div>
                     </div>

@@ -390,8 +390,9 @@ class Components{
                             * dropped 
                         */
                         const
-                            x = obj.node.offsetLeft(),
-                            y = obj.node.offsetTop();
+                            rect = node.getBoundingClientRect(),
+                            x = rect.left,
+                            y = rect.top;
                                 obj.data.x = x;
                                 obj.data.y = y;
                             node.on( Simulation.events.dragStart, function () {
@@ -401,6 +402,7 @@ class Components{
                         return this;
                     }
                 } );
+
                 node.attr( 'data-part-toolip', `${ Simulation.utils.name( this.getType().toLowerCase() ) } : ${this.getId()}` );
                     node.on( {
                         contextmenu( e ) {
@@ -1187,11 +1189,12 @@ class Cable extends Linker{
             id = this.getId(),
             obj = this;
                 node.port1.on( Simulation.events.dropDetected, function ( ) {
+                    const rect1 = obj.node.port1.getBoundingClientRect();
                     const
-                        x1 = obj.node.port1.offsetLeft(),
-                        y1 = obj.node.port1.offsetTop();
-                            obj.data.x1 = x1 - obj.data.mx;
-                            obj.data.y1 = y1 - obj.data.my;
+                        x1 = rect1.left,
+                        y1 = rect1.top;
+                            obj.data.x1 = x1;// - obj.data.mx;
+                            obj.data.y1 = y1;// - obj.data.my;
                     if ( obj.exist() ) {
                         /** 
                             * when the node will be 
@@ -1213,11 +1216,12 @@ class Cable extends Linker{
                     }
                 } );
                 node.port2.on( Simulation.events.dropDetected, function ( ) {
+                    const rect2 = obj.node.port2.getBoundingClientRect();
                     const
-                        x2 = obj.node.port2.offsetLeft(),
-                        y2 = obj.node.port2.offsetTop();
-                            obj.data.x2 = x2 - obj.data.mx;
-                            obj.data.y2 = y2 - obj.data.my;
+                        x2 = rect2.left,
+                        y2 = rect2.top;
+                            obj.data.x2 = x2;// - obj.data.mx;
+                            obj.data.y2 = y2;// - obj.data.my;
                     if ( obj.exist() ) {
                         /** 
                             * when the node will be 
