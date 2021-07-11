@@ -94,6 +94,13 @@ const Simulation = {
                 this.map[ id ] = obj;
         return id;
     },
+    getHub( node ) {
+        const 
+            id = this.generateId(),
+            obj = new Hub( node, id );
+                this.map[ id ] = obj;
+        return id;
+    },
     getComponentByName( node, name ) {
         return name.toLowerCase() === 'computer' ? this.getComputer( node ) :
             name.toLowerCase() === 'server' ? this.getServer( node ) :
@@ -102,7 +109,8 @@ const Simulation = {
             name.toLowerCase() === 'router' ? this.getRouter( node ) : 
             name.toLowerCase() === 'pad' ? this.getPad( node ) :
             name.toLowerCase() === 'phone' ? this.getPhone( node ) :
-            this.getConnector( node ) 
+            name.toLowerCase() === 'hub' ? this.getHub( node ) :
+            this.getConnector( node );  
     },
     remove( item ) {
         if ( item instanceof Components ) {
@@ -437,7 +445,7 @@ class Components{
             mx = this.getData().width / 1.5,
             my = this.getData().height / 1.5;
         if ( x >= ( this.getData().x - mx ) && x <= ( this.getData().x + this.getData().width + mx ) ) {
-            if( y >= this.getData().y - my && y <= ( this.getData().y + this.getData().height + my ) )
+            if( y >= ( this.getData().y - my ) && y <= ( this.getData().y + this.getData().height + my ) )
                 return true;
         }
         return false;
@@ -1352,6 +1360,17 @@ class Cable extends Linker{
             *  
         */
         const [ component_1, component_2 ] = this.ports;
+            if ( Components.isEndSystem( component_1 ) || Components.isEndSystem( component_2 ) ) {
+                if ( component_1 instanceof Router || component_2 instanceof Router  ) {
+                    return Simulation.errors.push( {
+                        error: `Erreur: ( ${ this.getType().toLowerCase() } ${ this.getId() } ) un routeur ne peut être directement connecté à `.concat( 
+                            utils.name( component_1.getType().toLowerCase() ) === "router" ? utils.name( component_2.getType().toLowerCase() ) : utils.name( component_1.getType().toLowerCase() )
+                        ),
+                        node: this.getNode().bar
+                    } );
+                } 
+            }
+        return this;
             if ( component_1.isSameType( component_2 ) ) {
                 if ( Computer.isComputer( component_1 ) ) {
                     return Simulation.errors.push( {
@@ -1444,6 +1463,17 @@ class Switch extends Host{
 
 class Router extends Host{
     constructor( node, id, type = 'ROUTER' ) {
+        super( node, id, type );
+    }
+
+    check() {
+            super.check();
+        return this;
+    }
+}
+
+class Hub extends Host{
+    constructor( node, id, type = 'HUB' ) {
         super( node, id, type );
     }
 

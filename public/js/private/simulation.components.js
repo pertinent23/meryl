@@ -13,8 +13,9 @@ const NameMap = {
     connector: 'Connecteur',
     paquet: 'Paquet',
     cable: 'Cable',
-    phone: 'telephone',
-    pad: 'tablet'
+    phone: 'Telephone',
+    pad: 'Tablet',
+    hub: 'Hub'
 };
 const UrlMap = {
     computer: '/computer.svg',
@@ -24,7 +25,8 @@ const UrlMap = {
     connector: '/connector.svg',
     cable: '/cable.svg',
     pad: '/pad.svg',
-    phone: '/phone.svg'
+    phone: '/phone.svg',
+    hub: '/hub.svg'
 };
 const events = {
     dragStart: 'drag.detected',
@@ -355,12 +357,21 @@ document.body.addEventListener( 'mouseleave', () => (
     utils.end()
 ) );
 
+document.body.addEventListener( 'mousemove', () => {
+    if ( utils.down ) {
+        utils.needed.down();
+        initEvent( utils.needed.node, events.drag, utils.data );
+    }
+} );
+
 const activeDragEvent = ( node, detected, drop ) => {
     const data = {};
     const needed = {
+        node: node,
         start() {
             utils.down = true;
             utils.detected = false;
+            utils.needed = needed;
             data.rect = this.getBoundingClientRect();
         },
         down() {

@@ -467,9 +467,6 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-}
-
-[data-toolip]:hover::after{
     font-size: 0.6em;
     color: #FFFFFF;
     z-index: 25;
